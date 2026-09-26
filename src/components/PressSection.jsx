@@ -6,24 +6,24 @@ export default function PressSection() {
 
   const items = [
     {
-      id: 'yerli',
-      name: 'YERLİ ÜRETİM',
-      quote: '“Kendi tesislerimizde yüksek standartlarla üretiyor, doğrudan yaşam alanlarınıza ulaştırıyoruz.”'
+      id: 'standart',
+      name: 'YÜKSEK STANDART',
+      quote: '“Ürünlerimizi en yüksek standartlarda sizlere sunmayı hedefliyoruz.”'
     },
     {
-      id: 'onayli',
-      name: 'TSE & BAKANLIK ONAYLI',
-      quote: '“Bağımsız laboratuvarlarca test edilmiş, bakanlık ruhsatlı ve tam onaylı güvenilir formüller.”'
+      id: 'surdurulebilir',
+      name: 'SÜRDÜRÜLEBİLİR ÜRETİM',
+      quote: '“Sürdürülebilir üretim anlayışımız ve müşteri taleplerine uygun kalite seçeneklerimizle yanınızdayız.”'
     },
     {
-      id: 'sifir-atik',
-      name: 'SIFIR ATIK & EKO-DOSTU',
-      quote: '“Doğada %100 biyoçözünür içerikler ve geri dönüştürülebilir ambalajlarla gezegenimizi koruyoruz.”'
+      id: 'isbirligi',
+      name: 'YURT İÇİ & YURT DIŞI',
+      quote: '“Geniş ürün yelpazemizle hem yurt içinde hem de yurt dışında hizmet vermekten gurur duyuyoruz.”'
     },
     {
-      id: 'profesyonel',
-      name: 'PROFESYONEL HİJYEN',
-      quote: '“Evlerden endüstriyel tesislere kadar en zorlu alanlarda bile kanıtlanmış maksimum hijyen performansı.”'
+      id: 'hijyen',
+      name: 'KALİTE VE HİJYEN',
+      quote: '“Sadece temiz değil, gerçekten hijyenik bir yaşam alanı vadediyoruz.”'
     }
   ];
 

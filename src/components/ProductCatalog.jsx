@@ -15,7 +15,7 @@ const getProductImage = (product) => {
     if (product.volumeSize?.includes('30 LT') || product.volumeSize?.includes('20 LT')) {
       return '/images/industrial_canister.jpg';
     }
-    if (product.subCategory?.includes('Sprey')) {
+    if (product.subCategory?.includes('Kullanıma Hazır') || product.volumeSize?.includes('ML')) {
       return '/images/starter_kit.jpg';
     }
     if (product.subCategory?.includes('Çamaşır') || product.name?.includes('Çamaşır')) {
@@ -103,7 +103,7 @@ export default function ProductCatalog({
             Ürün Kataloğu
           </h1>
           <p className="text-sm text-gray-500 mt-2 font-normal">
-            Tüm endüstriyel hijyen, kağıt ve sarf malzeme çözümlerimizi inceleyebilir, listenize ekleyerek toptan fiyat teklifi alabilirsiniz.
+            Temizlik kimyasalları, kağıt ve mutfak kullan-at, bardak ambalaj, çöp torbaları ve temizlik gereçlerimizi inceleyip toptan fiyat teklifi alabilirsiniz.
           </p>
         </div>
 

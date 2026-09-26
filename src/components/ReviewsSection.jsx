@@ -12,27 +12,27 @@ export default function ReviewsSection() {
   const reviews = [
     {
       stars: 5,
-      quote: "Bugüne kadar kullandığım en etkili temizlik ürünleri. Hem kokusu harika hem de sıfır plastik atık! Evimiz tertemiz kokuyor.",
+      quote: "Ofislerimizde Burtemis temizlik kimyasalları ve Z katlama havluları kullanıyoruz. Stok yönetimi kolay, kalite istikrarlı.",
       author: "Selin B.",
-      role: "Doğrulanmış Müşteri"
+      role: "Ofis Yöneticisi"
     },
     {
       stars: 5,
-      quote: "Otellerimizin tüm kat temizliğinde Burtemis konsantre tablet ve refill sistemine geçtik. Hem maliyetimiz %35 düştü hem de misafirlerimiz bayıldı.",
+      quote: "Endüstriyel çöp torbaları ve temizlik gereçlerinde düzenli tedarik alıyoruz. İşyerindeki hijyen standartlarını korumak kolaylaştı.",
       author: "Murat T.",
-      role: "Satın Alma Direktörü, Boutique Hotels Group"
+      role: "Satın Alma Sorumlusu"
     },
     {
       stars: 5,
-      quote: "Bulaşık tableti bardaklarda tek bir su lekesi bile bırakmıyor. Cam şişelerin tasarımı ise tezgah üzerinde o kadar şık duruyor ki!",
+      quote: "Mutfak kullan-at ürünleri ve eldivenlerimiz tek adresten geliyor. Geniş yelpaze gerçekten işimize yarıyor.",
       author: "Ece V.",
-      role: "İç Mimar & Tasarımcı"
+      role: "Restoran İşletmecisi"
     },
     {
       stars: 5,
-      quote: "Kimyasal kokulardan dolayı alerjim vardı. Burtemis formülleri hem cildime zarar vermiyor hem de derinlemesine temizliyor.",
+      quote: "5 LT ve 30 LT kimyasal seçenekleri sayesinde hem küçük hem büyük alanlarımız için uygun çözüm bulduk.",
       author: "Caner Y.",
-      role: "Doğrulanmış Müşteri"
+      role: "Tesis Yöneticisi"
     }
   ];
 

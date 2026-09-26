@@ -29,21 +29,21 @@ export default function App() {
   const [isCatalogModalOpen, setIsCatalogModalOpen] = useState(false);
   const [quoteItems, setQuoteItems] = useState([
     {
-      id: 'feat-01',
-      name: 'Temizlik Başlangıç Kiti (3 Şişe + 3 Tablet)',
+      id: 'kim-04',
+      name: '30 LT YÜZEY TEMİZLEYİCİ',
       category: 'kimyasal',
-      categoryLabel: 'Yüzey Temizlik',
-      volumeSize: '3 x 500 ML',
-      packaging: '3 Cam Şişe + 3 Konsantre Çözünür Tablet',
+      categoryLabel: 'Temizlik Kimyasalları',
+      volumeSize: '30 LT',
+      packaging: 'Toptan tedarik',
       quantity: 1
     },
     {
-      id: 'feat-03',
-      name: 'Eko Bulaşık Makinesi Tableti & Teneke Kutu',
-      category: 'bulasik',
-      categoryLabel: 'Bulaşık Grubu',
-      volumeSize: '60 Tablet',
-      packaging: '1 Adet Mat Teneke Kutu / 60 Tablet',
+      id: 'kag-01',
+      name: 'Z KATLAMA HAVLU 12X200 YAPRAK',
+      category: 'kagit',
+      categoryLabel: 'Kağıt & Mutfak Kullan-At',
+      volumeSize: '12X200 YAPRAK',
+      packaging: 'Toptan tedarik',
       quantity: 2
     }
   ]);

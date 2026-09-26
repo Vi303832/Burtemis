@@ -29,13 +29,13 @@ export default function CatalogModal({ isOpen, onClose }) {
     // Create mock download file
     const element = document.createElement("a");
     const file = new Blob([
-      `BURTEMİS ENDÜSTRİYEL HİJYEN VE KAĞIT ÇÖZÜMLERİ\n2026 ÜRÜN VE TEKNİK ŞARTNAME KATALOĞU\n\n` +
+      `BURTEMİS — KALİTE VE HİJYEN KAPINIZDA\n2026 ÜRÜN KATALOĞU\n\n` +
       `Kategoriler:\n` +
-      `1. Temizlik Kimyasalları (30 LT, 20 LT, 5 LT, 750 ML)\n` +
-      `2. Kağıt & Mutfak Kullan-At Grubu (Z Katlama 3000'li, Jumbo Rulo)\n` +
-      `3. Bardak & Ambalaj Ürünleri (4 OZ, 7 OZ, 8 OZ)\n` +
-      `4. Çöp Torbaları & Atık Yönetimi (Battal, Jumbo, Konteyner Hantal Boy)\n` +
-      `5. Temizlik Gereçleri & Kat Arabaları\n\n` +
+      `1. Temizlik Kimyasalları (20-30 LT, 5 LT, 500-1000 ML)\n` +
+      `2. Kağıt & Mutfak Kullan-At (Z Katlama, Peçete, Eldiven)\n` +
+      `3. Bardak & Ambalaj Ürünleri\n` +
+      `4. Çöp Torbaları & Atık\n` +
+      `5. Temizlik Gereçleri\n\n` +
       `Kurumsal İletişim: teklif@burtemis.com.tr | 0850 300 00 00`
     ], { type: 'text/plain;charset=utf-8' });
     element.href = URL.createObjectURL(file);
@@ -98,19 +98,19 @@ export default function CatalogModal({ isOpen, onClose }) {
               <ul className="space-y-1 text-textDark text-[11px]">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
-                  Endüstriyel Kimyasallar (20-30 LT & 5 LT Konsantre Seriler)
+                  Temizlik Kimyasalları (20-30 LT, 5 LT ve 500-1000 ML)
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
-                  Kağıt & Mutfak Grubu (Z Katlama 3000'li, Jumbo Rulolar)
+                  Kağıt & Mutfak Kullan-At (Z Katlama, Peçete, Eldiven)
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
-                  Bardak & Ambalaj (4 OZ, 7 OZ, 8 OZ ve Köpük Ambalajlar)
+                  Bardak & Ambalaj (Karton, Köpük, Poşet ve Bant)
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
-                  Çöp Torbaları (Battal, Jumbo, Hantal Boy) ve Mop Ekipmanları
+                  Çöp Torbaları ve Temizlik Gereçleri
                 </li>
               </ul>
             </div>

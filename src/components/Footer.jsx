@@ -39,7 +39,7 @@ export default function Footer({ onNavigate, onSelectCategory }) {
               BURTEMİS
             </button>
             <p className="text-xs sm:text-sm text-white/80 font-light max-w-sm leading-relaxed">
-              Profesyonel hijyen ve temizlik çözümleri. Yerli üretim, TSE &amp; bakanlık onaylı ürünlerle kurumsal ve bireysel ihtiyaçlara hizmet veriyoruz.
+              Burtemis olarak ürünlerimizi en yüksek standartlarda sunmayı hedefliyoruz. Geniş ürün yelpazemizle yurt içi ve yurt dışında hizmet vermekten gurur duyuyoruz.
             </p>
             <div className="pt-2 flex items-center gap-4 text-white/80">
               <a href="#" className="hover:text-white transition-colors p-1" aria-label="Instagram">
@@ -150,9 +150,9 @@ export default function Footer({ onNavigate, onSelectCategory }) {
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60 font-light">
           <div className="flex flex-wrap items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-wider text-white/80">
-            <span className="px-2.5 py-1 rounded-full border border-white/30">Yerli Üretim</span>
-            <span className="px-2.5 py-1 rounded-full border border-white/30">TSE &amp; Bakanlık Onaylı</span>
-            <span className="px-2.5 py-1 rounded-full border border-white/30">Sıfır Atık</span>
+            <span className="px-2.5 py-1 rounded-full border border-white/30">Yüksek Standart</span>
+            <span className="px-2.5 py-1 rounded-full border border-white/30">Sürdürülebilir Üretim</span>
+            <span className="px-2.5 py-1 rounded-full border border-white/30">Profesyonel Hijyen</span>
           </div>
           <div>
             <span>© 2026 Burtemis Hijyen A.Ş. Tüm hakları saklıdır.</span>

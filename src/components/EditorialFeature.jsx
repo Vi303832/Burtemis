@@ -23,12 +23,12 @@ export default function EditorialFeature({ onLearnMore }) {
           {/* Overlapping Floating White Card on Right */}
           <div className="relative z-10 m-4 sm:m-8 lg:mr-16 max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-2xl border border-gray-100/80 text-left animate-fadeIn">
             <h2 className="text-2xl sm:text-3xl font-serif sm:font-sans font-normal text-gray-900 tracking-tight leading-tight">
-              Tüm Gezegenin Hissedeceği Kusursuz Bir Temizlik
+              Tertemiz Bir Dünya İçin Kalite ve Hijyen
             </h2>
 
             <p className="text-xs sm:text-sm text-gray-600 mt-4 leading-relaxed font-normal">
-              Sert kimyasallara, zararlı toksinlere ve çevre kirliliğine veda edin. 
-              Burtemis, doğaya saygılı ve insan sağlığına dost formülleriyle yaşam alanlarınızda tertemiz bir hava yaratır.
+              Evinizden işyerinize ihtiyacınız olan en kaliteli temizlik malzemeleri ve hijyenik kağıt ürünleri tek bir adreste.
+              Sağlığınız ve konforunuz için özenle seçilmiş, çevreye duyarlı ve güçlü çözümlerimizle tanışın.
             </p>
 
             <div className="mt-6">

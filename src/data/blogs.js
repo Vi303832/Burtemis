@@ -1,62 +1,58 @@
 export const BLOG_POSTS = [
   {
-    id: 'ofis-hijyen-cozumleri',
-    title: 'Ofis Kullanımına Uygun Hijyen Çözümleri',
+    id: 'ofis-ekonomik-tuvalet-kagidi',
+    title: 'Ofis Kullanımına Uygun Ekonomik Tuvalet Kağıtları: Temizlik ve Verimliliğin Anahtarı',
     category: 'Ofis & Kurumsal Hijyen',
-    readTime: '4 dk okuma',
+    readTime: '5 dk okuma',
     date: '2026',
-    summary: 'Ofis ortamlarında salgınların önlenmesi, çalışan verimliliğinin korunması ve hijyen maliyetlerinin %35 kontrol altına alınması için stratejik adımlar.',
+    summary: 'Ofislerde hijyen ve konfor için uygun fiyatlı, kaliteli tuvalet kağıdı seçiminin işletme bütçesine ve çalışan memnuniyetine etkisi.',
     content: `
-      Kurumsal plazalarda ve ofis ortamlarında hijyen, yalnızca bir temizlik faaliyeti değil; doğrudan çalışan sağlığı, işe devamlılık oranı ve şirket prestijini etkileyen kritik bir yönetim parametresidir.
+      Ofislerde hijyen ve konfor, çalışanların sağlığı ve memnuniyeti için son derece önemlidir. Bu nedenle, ofislerde kullanılan temel malzemelerden biri de tuvalet kağıtlarıdır. Ekonomik ve kaliteli tuvalet kağıtları, ofis ortamında temizlik ve verimliliği artırabilir. İşte ofis kullanımına uygun ekonomik tuvalet kağıtlarının avantajları ve öneriler:
 
-      ### 1. Temassız Dispenser Sistemleri ile İsrafın Önlenmesi
-      Açıkta duran rulo havlular veya klasik basmalı sabunluklar yerine sensörlü veya Z katlama tek yaprak veren dispenserların tercih edilmesi:
-      - Çapraz kontaminasyon (bakteri bulaşma) riskini %80 azaltır.
-      - Kağıt tüketimini tek çekimde sınırlayarak aylık sarfiyatı %35-40 oranında düşürür.
+      ### 1. Ekonomik Fiyatlarla Kaliteli Hizmet
+      Ofisler için uygun fiyatlı tuvalet kağıtları, işletmelerin bütçesini korurken kaliteli bir hizmet sunar. Kaliteli kağıt, dayanıklılığı ve emiciliği ile bilinir ve çalışanların memnuniyetini artırır.
 
-      ### 2. Doğru Alkol Bazlı Cam ve Yüzey Temizleyiciler
-      Ofis masaları, klavyeler ve toplantı odası cam bölmeleri gün içinde yüzlerce temas alır. Anti-statik formüllü ve çabuk buharlaşan yüzey spreyleri, elektronik ekipmanlara zarar vermeden toz tutmayı geciktirir.
+      ### 2. Çevre Dostu Seçenekler
+      Çevre dostu tuvalet kağıtları, ofislerde sürdürülebilirlik bilincini artırır. Geri dönüştürülmüş kağıt malzemelerden yapılan ve çevreye zarar vermeyen ürünler tercih edilebilir. Bu, işletmelerin çevresel sorumluluklarını yerine getirmesine ve çalışanlarının çevre bilincini artırmasına yardımcı olur.
 
-      ### 3. Düzenli ve Planlı Toplu Tedarik Stratejisi
-      Tüketim istatistiklerinizi belirleyip aylık veya 3 aylık periyotlarla toplu sipariş vermek, kargo maliyetlerini sıfırladığı gibi ani stok tükenmelerinin önüne geçer. Burtemis kurumsal teklif sistemiyle ofisinizin büyüklüğüne göre optimize edilmiş paketler sunuyoruz.
+      ### 3. Yüksek Emicilik ve Konfor
+      Uygun fiyatlı tuvalet kağıtları genellikle yüksek emiciliğe sahiptir, bu da daha az kağıt kullanımıyla daha uzun süreli bir kullanım sağlar. Bu, ofis personelinin daha rahat ve konforlu bir deneyim yaşamasına yardımcı olur.
+
+      ### 4. Hijyen ve Sağlık Standartlarına Uygunluk
+      Ofis kullanımına uygun ekonomik tuvalet kağıtları, hijyen ve sağlık standartlarına uygun olarak üretilir. Mikrop ve bakteri barındırmayan, dermatolojik olarak test edilmiş ürünler tercih edilmelidir. Bu, ofis ortamında sağlıklı bir yaşam sürmeyi destekler.
+
+      ### 5. Kolay Temin ve Tedarik
+      Ekonomik tuvalet kağıtları genellikle kolayca temin edilebilir ve düzenli olarak tedarik edilebilir. Bu, ofis yöneticilerinin stok yönetimini kolaylaştırır ve işletmenin günlük faaliyetlerini aksatmaz.
+
+      Ofislerde hijyen ve konforu artırmak için uygun fiyatlı ve kaliteli tuvalet kağıtları seçmek önemlidir. Ekonomik tuvalet kağıtları, bütçeyi korurken iş yerindeki temizlik ve verimliliği artırabilir. Bu nedenle, ofis yöneticileri ve işletme sahipleri, çalışanların sağlığını ve memnuniyetini ön planda tutarak doğru tuvalet kağıdı seçimine dikkat etmelidirler.
     `
   },
   {
     id: 'endustriyel-kagit-havlu-ve-tuvalet-kagidi',
     title: 'Endüstriyel Tuvalet Kağıdı ve Kağıt Havlunun İşletmelerdeki Önemi',
-    category: 'Maliyet & Verimlilik',
+    category: 'İşletme Hijyeni',
     readTime: '5 dk okuma',
     date: '2026',
-    summary: 'Doğru kat sayısı, gramaj ve selüloz oranı seçimi işletmenizi gider tıkanıklıklarından ve gereksiz maliyetlerden nasıl kurtarır?',
+    summary: 'Endüstriyel tuvalet kağıdı ve kağıt havlunun hijyen standartları, verimlilik, çalışan memnuniyeti ve stok yönetimi açısından işletmelere katkıları.',
     content: `
-      Birçok işletme satın alma yaparken yalnızca koli veya rulo birim fiyatına odaklanır. Ancak endüstriyel kağıt grubunda asıl maliyeti belirleyen unsur "birim kullanım verimliliği"dir.
+      İşletmelerde hijyen ve temizlik, çalışanların sağlığı ve memnuniyeti için kritik öneme sahiptir. Bu nedenle, endüstriyel tuvalet kağıdı ve kağıt havlu gibi temel hijyen ürünleri, bir işyerinin günlük işleyişinde hayati bir rol oynar. İşte endüstriyel tuvalet kağıdı ve kağıt havlunun işyerinizdeki önemi ve avantajları:
 
-      ### Düşük Kaliteli Kağıtların Gizli Maliyeti
-      - Düşük emiciliğe sahip kağıt havlularda kullanıcı elini kurulamak için tek yaprak yerine 4-5 yaprak çeker. Bu durum kağıdın 3 kat daha hızlı tükenmesine yol açar.
-      - Suda çözünmeyen düşük kaliteli geri dönüşüm tuvalet kağıtları gider borularında birikerek binlerce liralık tesisat tıkanıklığı masrafları doğurur.
+      ### 1. Hijyen Standartlarını Karşılayın
+      Endüstriyel tuvalet kağıdı ve kağıt havlu, işyerinizde hijyen standartlarını karşılamak için temel bir gerekliliktir. Hijyenik tuvaletler ve lavabo alanları, çalışanların sağlığını korurken işyerinde pozitif bir çalışma ortamı oluşturur.
 
-      ### Burtemis %100 Saf Selüloz Teknolojisi
-      Burtemis Z Katlama ve Jumbo serileri, 40-42 gr/m² çift katlı lamine dokusu sayesinde:
-      - Islakken yüksek çekme direncine sahiptir, elde eriyip hamurlaşmaz.
-      - Tek yaprakta maksimum suyu hapseder.
-      - Gidere atıldığında suda homojen biçimde çözünerek boruları korur.
-    `
-  },
-  {
-    id: 'endustriyel-kimyasal-secim-rehberi',
-    title: 'B2B Toptan Temizlik Kimyasalı Seçerken Dikkat Edilecek 4 Kriter',
-    category: 'Kimyasal & Güvenlik',
-    readTime: '3 dk okuma',
-    date: '2026',
-    summary: 'Konsantrasyon oranları, MSDS güvenlik formları, yüzey uyumu ve personelin güvenli kullanımı için temel rehber.',
-    content: `
-      Büyük metrekareli tesislerde sulandırılmadan kullanılan hazır kimyasallar lojistik ve depolama açısından yüksek maliyet oluşturur.
+      ### 2. Verimliliği Artırın
+      İşyerinizdeki çalışanların verimliliğini artırmak için, kolayca erişilebilen ve kullanımı pratik olan endüstriyel tuvalet kağıdı ve kağıt havluları önemlidir. Hızlı ve etkili bir şekilde temizlik yapmak, zaman kaybını önler ve iş akışını iyileştirir.
 
-      ### Konsantrasyon Gücü
-      1/50 veya 1/100 seyreltme oranına sahip 30 LT'lik bir konsantre zemin temizleyici, yaklaşık 1500 ila 3000 litre aktif temizleme solüsyonuna dönüşür. Bu da litre başına temizlik maliyetini minimuma indirir.
+      ### 3. Çalışan Memnuniyetini Artırın
+      İşyerindeki temiz ve hijyenik bir ortam, çalışan memnuniyetini artırır. Endüstriyel tuvalet kağıdı ve kağıt havlu gibi temel hijyen ürünleri, çalışanların konforunu ve refahını destekler, böylece motivasyonu artırır.
 
-      ### Sertifikasyon ve Cilt Uyumu
-      Özellikle sıvı sabun ve genel temizlik ürünlerinde dermatolojik test standartları ve ISO kalite belgeleri bulunmalıdır. Burtemis, tüm kimyasal ürünlerinde onaylı güvenlik bilgi formlarıyla (MSDS) kurumsal güvence sağlar.
+      ### 4. Çevre Dostu Seçeneklerle Sorumluluk Sahibi Olun
+      Çevre dostu endüstriyel tuvalet kağıdı ve kağıt havlu seçenekleri, işletmenizin çevresel etkisini azaltmanıza yardımcı olur. Geri dönüştürülmüş malzemelerden yapılan ve çevre dostu üretim süreçleri kullanılan ürünler, sürdürülebilir bir işletme modeli oluşturmanıza katkı sağlar.
+
+      ### 5. Tedarik ve Stok Yönetimini Kolaylaştırın
+      Endüstriyel tuvalet kağıdı ve kağıt havlu gibi hijyen ürünlerini düzenli olarak tedarik etmek ve stok yönetimini sağlamak, işletmenin günlük faaliyetlerinde sorunsuz bir şekilde devam etmesini sağlar. Güvenilir bir tedarikçi ile yapılan anlaşmalar, stok sıkıntısı yaşanmadan işleyişin devamlılığını sağlar.
+
+      İşletmenizin hijyen ve temizlik standartlarını yükseltmek için endüstriyel tuvalet kağıdı ve kağıt havlu gibi temel hijyen ürünlerini doğru bir şekilde seçmek önemlidir. Çalışanların sağlığını korumak ve işyerinde pozitif bir atmosfer oluşturmak için kaliteli ve çevre dostu ürünleri tercih etmek, işletmenizin başarısını artırmanıza yardımcı olur.
     `
   }
 ];

@@ -17,24 +17,19 @@ export default function Hero({ onExploreProducts, onOpenQuoteAction }) {
           preload="metadata"
           aria-hidden="true"
         />
-        {/* Subtle Dark Vignette Overlay for Crisp Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40"></div>
       </div>
 
-      {/* Hero Content - Centered */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-5 animate-fadeIn">
-        
-        {/* Main Title matching the screenshot style */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
-          The Coast We Keep Koleksiyonu
+
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
+          Kalite ve Hijyen Kapınızda
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-sm sm:text-base lg:text-lg text-white/90 max-w-2xl mx-auto font-light leading-relaxed">
-          Gezegenimizi koruyan, evinizi ve işletmenizi sıfır atıkla tertemiz yapan yenilikçi temizlik çözümleri.
+        <p className="text-sm sm:text-base lg:text-lg text-white/90 max-w-xl mx-auto font-light leading-relaxed">
+          Evinizden işyerinize temizlik malzemeleri ve hijyenik kağıt ürünleri tek adreste.
         </p>
 
-        {/* Primary Pill Button */}
         <div className="pt-3">
           <button
             onClick={onExploreProducts}

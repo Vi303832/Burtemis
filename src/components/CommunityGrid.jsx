@@ -30,9 +30,9 @@ export default function CommunityGrid() {
     },
     {
       src: '/images/community_4.jpg',
-      alt: 'Burtemis Doğal Temizlik Ürünleri',
-      handle: '#sıfıratık',
-      label: 'Doğal Çözümler'
+      alt: 'Burtemis Temizlik Ürünleri',
+      handle: '#burtemis',
+      label: 'Kalite & Hijyen'
     }
   ];
 

@@ -54,9 +54,9 @@ export default function Header({
       {/* 1. Announcement Bar */}
       <div className="bg-[#0038e3] text-white text-[12px] sm:text-[13px] font-semibold tracking-wide py-2 px-4 text-center">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
-          <span>500 TL Üzeri Siparişlerde Ücretsiz Kargo</span>
+          <span>Tertemiz Bir Dünya İçin Kalite ve Hijyen Kapınızda</span>
           <span className="opacity-60 hidden sm:inline">•</span>
-          <span className="hidden sm:inline">%100 Koşulsuz Memnuniyet & İade Garantisi</span>
+          <span className="hidden sm:inline">Kurumsal Fiyat Teklifi Alın</span>
         </div>
       </div>
 

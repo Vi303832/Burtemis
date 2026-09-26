@@ -6,44 +6,44 @@ export default function CategoryShowcase({ onSelectCategory }) {
 
   const categories = [
     {
-      id: 'camasir',
-      name: 'Çamaşır & Yıkama',
+      id: 'kimyasal',
+      name: 'Temizlik Kimyasalları',
       categoryKey: 'kimyasal',
-      badge: 'ÇAMAŞIR',
-      desc: 'Doğal mineralli konsantre deterjanlar ve refill paketleri',
-      image: '/images/laundry_pouch.jpg'
-    },
-    {
-      id: 'sabun',
-      name: 'Köpük El Sabunu',
-      categoryKey: 'sabun',
-      badge: 'EL HİJYENİ',
-      desc: 'Buzlu cam şişe & hassas ciltlere özel çözünür tabletler',
-      image: '/images/soap_dispenser.jpg'
-    },
-    {
-      id: 'bulasik',
-      name: 'Bulaşık & Mutfak',
-      categoryKey: 'bulasik',
-      badge: 'BULAŞIK',
-      desc: 'Bitkisel bulaşık makinesi tabletleri ve yağ sökücüler',
-      image: '/images/dish_canister.jpg'
-    },
-    {
-      id: 'yuzey',
-      name: 'Çok Amaçlı Yüzey & Banyo',
-      categoryKey: 'kimyasal',
-      badge: 'YÜZEY TEMİZLİK',
-      desc: 'Banyo, cam ve genel yüzeyler için iz bırakmayan sprey setleri',
-      image: '/images/starter_kit.jpg'
+      badge: 'KİMYASAL',
+      desc: '20-30 LT, 5 LT ve 500-1000 ML temizlik kimyasalları',
+      image: '/images/industrial_canister.jpg'
     },
     {
       id: 'kagit',
-      name: 'Endüstriyel Kağıt Grubu',
+      name: 'Kağıt & Mutfak Kullan-At',
       categoryKey: 'kagit',
-      badge: 'KAĞIT & HAVLU',
-      desc: '%100 saf selüloz Z-katlama ve fotoselli dispenser havlular',
-      image: '/images/industrial_canister.jpg'
+      badge: 'KAĞIT & MUTFAK',
+      desc: 'Z katlama havlu, dispenser peçete, eldiven ve mutfak sarfı',
+      image: '/images/laundry_pouch.jpg'
+    },
+    {
+      id: 'ambalaj',
+      name: 'Bardak & Ambalaj',
+      categoryKey: 'ambalaj',
+      badge: 'AMBALAJ',
+      desc: 'Karton ve köpük bardaklar, poşet, bant ve servis ürünleri',
+      image: '/images/dish_canister.jpg'
+    },
+    {
+      id: 'cop-torbasi',
+      name: 'Çöp Torbaları & Atık',
+      categoryKey: 'cop-torbasi',
+      badge: 'ÇÖP TORBASI',
+      desc: 'Mini, orta, battal ve ağır hizmet çöp torbaları',
+      image: '/images/starter_kit.jpg'
+    },
+    {
+      id: 'gerec',
+      name: 'Temizlik Gereçleri',
+      categoryKey: 'gerec',
+      badge: 'GEREÇ',
+      desc: 'Mop, palet aparat, temizlik arabası, bez ve fırçalar',
+      image: '/images/soap_dispenser.jpg'
     }
   ];
 
@@ -57,7 +57,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
             Kategoriye Göre İnceleyin
           </h2>
           <p className="text-base sm:text-lg text-[#475569] mt-3 font-normal leading-relaxed">
-            Eviniz ve işletmeniz için özel olarak geliştirilmiş temizlik çözümleri
+            Evinizden işyerinize ihtiyacınız olan temizlik malzemeleri ve hijyen ürünleri
           </p>
         </div>
 

@@ -6,64 +6,52 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
 
   const featuredList = [
     {
-      id: 'feat-01',
-      name: 'Temizlik Başlangıç Kiti (3 Şişe + 3 Tablet)',
+      id: 'kim-04',
+      name: '30 LT YÜZEY TEMİZLEYİCİ',
       category: 'kimyasal',
-      categoryLabel: 'Yüzey Temizlik',
-      badge: 'ÇOK SATAN',
+      categoryLabel: 'Temizlik Kimyasalları',
+      badge: 'ENDÜSTRİYEL',
       badgeColor: 'bg-[#0038e3] text-white',
-      rating: 4.9,
-      reviewCount: 3840,
-      price: '₺450,00',
-      numericPrice: 450,
-      volumeSize: '3 x 500 ML',
-      image: '/images/starter_kit.jpg',
-      shortDesc: 'Çok amaçlı, cam ve banyo temizliği için yeniden doldurulabilir cam şişeler ve konsantre çözünür tabletler.'
+      volumeSize: '30 LT',
+      packaging: 'Toptan tedarik',
+      image: '/images/industrial_canister.jpg',
+      shortDesc: 'İşletmeler ve yoğun kullanım alanları için endüstriyel yüzey temizleyici.'
     },
     {
-      id: 'feat-02',
-      name: 'Doğal Çamaşır Deterjanı Refill Paketi',
-      category: 'kimyasal',
-      categoryLabel: 'Çamaşır Grubu',
-      badge: 'YENİ FORMÜL',
+      id: 'kag-01',
+      name: 'Z KATLAMA HAVLU 12X200 YAPRAK',
+      category: 'kagit',
+      categoryLabel: 'Kağıt & Mutfak Kullan-At',
+      badge: 'ÇOK SATAN',
       badgeColor: 'bg-emerald-600 text-white',
-      rating: 4.8,
-      reviewCount: 2190,
-      price: '₺320,00',
-      numericPrice: 320,
-      volumeSize: '60 Yıkama / 2.5 KG',
+      volumeSize: '12X200 YAPRAK',
+      packaging: 'Toptan tedarik',
       image: '/images/laundry_pouch.jpg',
-      shortDesc: 'Bitkisel bazlı, hipoalerjenik ve mikroplastiksiz ultra konsantre çamaşır tozu dolum paketi.'
+      shortDesc: 'Ofis ve işletmeler için Z katlama dispenser kağıt havlu.'
     },
     {
-      id: 'feat-03',
-      name: 'Eko Bulaşık Makinesi Tableti & Teneke Kutu',
-      category: 'bulasik',
-      categoryLabel: 'Bulaşık Grubu',
-      badge: 'EN İYİ SEÇİM',
+      id: 'amb-01',
+      name: '4 OZ KARTON BARDAK 3000 Lİ',
+      category: 'ambalaj',
+      categoryLabel: 'Bardak & Ambalaj Ürünleri',
+      badge: 'AMBALAJ',
       badgeColor: 'bg-amber-600 text-white',
-      rating: 4.9,
-      reviewCount: 4620,
-      price: '₺290,00',
-      numericPrice: 290,
-      volumeSize: '60 Tablet',
+      volumeSize: '4 OZ',
+      packaging: '3000 Adet / Koli',
       image: '/images/dish_canister.jpg',
-      shortDesc: 'Fosfatsız, mat çelik saklama kutusu ve sudan geçirmeden lekesiz temizlik sağlayan mineral tabletler.'
+      shortDesc: 'Espresso ve numune servisi için karton bardak.'
     },
     {
-      id: 'feat-04',
-      name: 'Köpük El Sabunu Başlangıç Seti',
-      category: 'sabun',
-      categoryLabel: 'El Hijyeni',
-      badge: 'SINIRLI ÜRETİM',
+      id: 'ger-21',
+      name: 'TEMİZLİK ARABASI ÇİFT KOVALI PLAST.',
+      category: 'gerec',
+      categoryLabel: 'Temizlik Gereçleri',
+      badge: 'GEREÇ',
       badgeColor: 'bg-indigo-600 text-white',
-      rating: 4.9,
-      reviewCount: 1840,
-      price: '₺260,00',
-      numericPrice: 260,
-      volumeSize: '1 Şişe + 3 Tablet',
+      volumeSize: 'Çift Kovalı',
+      packaging: 'Toptan tedarik',
       image: '/images/soap_dispenser.jpg',
-      shortDesc: 'Buzlu cam gövde, paslanmaz çelik köpük pompası ve nemlendirici lavanta & bergamot sabun tabletleri.'
+      shortDesc: 'Profesyonel kullanım için çift kovalı plastik temizlik arabası.'
     }
   ];
 
@@ -84,7 +72,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
             Öne Çıkan Ürünler
           </h2>
           <p className="text-base sm:text-lg text-gray-500 mt-3 font-normal leading-relaxed">
-            Kullanıcıların ve profesyonellerin en çok tercih ettiği hijyen çözümleri
+            Geniş ürün yelpazemizden seçilmiş temizlik ve hijyen çözümleri
           </p>
         </div>
 

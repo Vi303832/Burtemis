@@ -76,12 +76,12 @@ export default function StartJourneyCTA({ onGetStarted }) {
 
         {/* Title */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-gray-900 tracking-tight">
-          Temizlik Yolculuğunuza Bugün Başlayın
+          Hijyen Yolculuğunuza Bugün Başlayın
         </h2>
 
         {/* Subtitle */}
         <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto font-light leading-relaxed">
-          Plastik atıksız, güçlü ve sürdürülebilir temizlik dünyasına ilk adımı atın.
+          Kalite ve hijyen kapınızda — güçlü ve sürdürülebilir temizlik çözümleriyle tanışın.
         </p>
 
         {/* Buttons */}

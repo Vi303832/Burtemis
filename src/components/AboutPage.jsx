@@ -30,41 +30,18 @@ export default function AboutPage({
     return () => clearTimeout(timer);
   }, [scrollToSection]);
 
-  const milestones = [
-    {
-      year: '2018',
-      title: 'Kuruluş',
-      desc: 'İstanbul’da çevre dostu konsantre temizlik formülleriyle yola çıktık.',
-    },
-    {
-      year: '2021',
-      title: 'Refill Sistemi',
-      desc: 'Tek kullanımlık plastik şişeleri terk eden tablet ve refill modelini yaygınlaştırdık.',
-    },
-    {
-      year: '2024',
-      title: '4M+ Nokta',
-      desc: 'Evlerden otellere, ofislerden endüstriyel tesislere milyonlarca noktaya ulaştık.',
-    },
-    {
-      year: '2026',
-      title: 'Sıfır Atık Hedefi',
-      desc: 'Karbon nötr üretim ve %100 biyoçözünür formüllerle yolculuğumuza devam ediyoruz.',
-    },
-  ];
-
   const pillars = [
     {
-      title: 'Gezegen Öncelikli',
-      desc: 'Her formülümüz doğada çözünebilir içeriklerle tasarlanır; plastik atığı kaynağında keseriz.',
+      title: 'Yüksek Standartlar',
+      desc: 'Ürünlerimizi en yüksek standartlarda sunmayı hedefliyor; kalite standartlarımızı sürekli yükseltmeyi amaçlıyoruz.',
     },
     {
-      title: 'Kanıtlanmış Performans',
-      desc: 'Bağımsız laboratuvar testleri, TSE ve bakanlık onaylarıyla güvenilir hijyen sunarız.',
+      title: 'Geniş Yelpaze & İşbirliği',
+      desc: 'Geniş ürün yelpazemizle, hem yurt içinde hem de yurt dışında yaptığımız işbirlikleri ile hizmet vermekten gurur duyuyoruz.',
     },
     {
-      title: 'Erişilebilir Temizlik',
-      desc: 'Ev kullanıcısından kurumsal tesislere kadar her ölçekte adil fiyat ve güçlü sonuç.',
+      title: 'Sürdürülebilir Üretim',
+      desc: 'Sürdürülebilir üretim anlayışımız ve müşteri taleplerine uygun kalite seçeneklerimizle yanınızdayız.',
     },
   ];
 
@@ -81,7 +58,6 @@ export default function AboutPage({
       />
 
       <main className="flex-1">
-        {/* Breadcrumb */}
         <div className="bg-gray-50 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2">
             <button
@@ -96,12 +72,11 @@ export default function AboutPage({
           </div>
         </div>
 
-        {/* ── Intro / Brand Story Hero ─────────────────────────────────── */}
         <section id="kurumsal" className="relative overflow-hidden border-b border-gray-100">
           <div className="absolute inset-0">
             <img
               src="/images/lifestyle_picnic.jpg"
-              alt="Burtemis — doğaya saygılı temizlik"
+              alt="Burtemis — kalite ve hijyen"
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0c1a3a]/90 via-[#0c1a3a]/70 to-[#0c1a3a]/35" />
@@ -110,13 +85,13 @@ export default function AboutPage({
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
             <p className="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-white/70 uppercase mb-4">
-              ECO-CLEAN SOLUTIONS
+              KALİTE VE HİJYEN
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight max-w-xl leading-[1.05]">
               BURTEMİS
             </h1>
-            <p className="mt-5 text-base sm:text-lg text-white/85 font-light leading-relaxed max-w-md">
-              Tertemiz bir dünya için kalite ve hijyeni, plastik atıksız formüllerle kapınıza getiriyoruz.
+            <p className="mt-5 text-base sm:text-lg text-white/85 font-light leading-relaxed max-w-lg">
+              Tertemiz bir dünya için ilk adım: kalite ve hijyen kapınızda. Sadece temiz değil, gerçekten hijyenik bir yaşam alanı vadediyoruz.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <button
@@ -139,7 +114,6 @@ export default function AboutPage({
           </div>
         </section>
 
-        {/* ── Hikayemiz ────────────────────────────────────────────────── */}
         <section id="hikayemiz" className="py-16 sm:py-24 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -148,13 +122,13 @@ export default function AboutPage({
                   HİKAYEMİZ
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-heading font-bold text-gray-900 tracking-tight leading-tight">
-                  Temizliği yeniden tanımladık
+                  Kalite standartlarını sürekli yükseltiyoruz
                 </h2>
                 <p className="text-sm sm:text-base text-gray-600 font-light leading-relaxed">
-                  Burtemis, ağır su dolu plastik şişeleri taşımanın hem doğaya hem bütçeye yük olduğunu fark ettiğimizde doğdu. Amacımız basitti: ihtiyacınız olan aktif temizliği, gereksiz ambalaj ve toksik kimyasallar olmadan sunmak.
+                  Burtemis olarak, ürünlerimizi en yüksek standartlarda sizlere sunmayı hedefliyoruz. Geniş ürün yelpazemizle, hem yurt içinde hem de yurt dışında yaptığımız işbirliklerimiz ile sizlere hizmet vermekten gurur duyuyoruz.
                 </p>
                 <p className="text-sm sm:text-base text-gray-600 font-light leading-relaxed">
-                  Bugün yerli üretim tesislerimizde geliştirdiğimiz konsantre tablet ve refill sistemleriyle evlerden endüstriyel tesislere kadar sürdürülebilir hijyen sağlıyoruz.
+                  Sürdürülebilir üretim anlayışımız ve müşteri taleplerine uygun kalite seçeneklerimizle, kalite standartlarımızı sürekli olarak yükseltmeyi amaçlıyoruz.
                 </p>
               </div>
 
@@ -162,7 +136,7 @@ export default function AboutPage({
                 <div className="relative rounded-3xl overflow-hidden aspect-[4/3] bg-[#eaf4fd]">
                   <img
                     src="/images/how_it_works.jpg"
-                    alt="Burtemis konsantre tablet sistemi"
+                    alt="Burtemis temizlik ve hijyen ürünleri"
                     className="w-full h-full object-cover object-center"
                   />
                 </div>
@@ -171,7 +145,6 @@ export default function AboutPage({
           </div>
         </section>
 
-        {/* ── Misyon / Pillars ─────────────────────────────────────────── */}
         <section className="py-16 sm:py-24 bg-[#eaf4fd] border-b border-[#d8e8f8]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
@@ -179,7 +152,7 @@ export default function AboutPage({
                 Neden Burtemis?
               </h2>
               <p className="mt-3 text-sm text-gray-600 font-light leading-relaxed">
-                Her kararımızda gezegeni, insan sağlığını ve gerçek temizlik performansını bir arada tutuyoruz.
+                Evinizden işyerinize ihtiyacınız olan temizlik malzemeleri ve hijyenik kağıt ürünleri tek bir adreste.
               </p>
             </div>
 
@@ -201,60 +174,27 @@ export default function AboutPage({
           </div>
         </section>
 
-        {/* ── Timeline ─────────────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 sm:mb-16">
-              <span className="text-[11px] font-bold tracking-[0.2em] text-[#0038e3] uppercase block mb-3">
-                YOLCULUĞUMUZ
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 tracking-tight">
-                Kısa bir bakış
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-              {milestones.map((item, idx) => (
-                <div key={idx} className="relative text-left">
-                  <p className="text-3xl sm:text-4xl font-heading font-bold text-[#0038e3]/20 tracking-tight mb-2">
-                    {item.year}
-                  </p>
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-1.5">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-500 font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Standards / Sertifikalar ─────────────────────────────────── */}
         <StandardsSection
           onLearnMore={() => onNavigate('iletisim')}
         />
 
-        {/* ── Basın / Güvence band ─────────────────────────────────────── */}
         <section className="py-14 sm:py-16 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="text-[11px] font-bold tracking-[0.2em] text-[#0038e3] uppercase block mb-3">
               BURTEMİS GÜVENCESİ
             </span>
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gray-900 tracking-tight max-w-3xl mx-auto">
-              “Kendi tesislerimizde yüksek standartlarla üretiyor, doğrudan yaşam alanlarınıza ulaştırıyoruz.”
+              “Sağlığınız ve konforunuz için özenle seçilmiş, çevreye duyarlı ve güçlü çözümler.”
             </h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-400">
-              <span className="text-[#0038e3]">Yerli Üretim</span>
-              <span>TSE & Bakanlık Onaylı</span>
-              <span>Sıfır Atık</span>
+              <span className="text-[#0038e3]">Yüksek Standart</span>
+              <span>Sürdürülebilir Üretim</span>
+              <span>Yurt İçi &amp; Yurt Dışı</span>
               <span>Profesyonel Hijyen</span>
             </div>
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────────────────── */}
         <StartJourneyCTA onGetStarted={() => onNavigate('urunler')} />
       </main>
 
