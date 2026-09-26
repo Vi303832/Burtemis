@@ -10,11 +10,12 @@ export default function Hero({ onExploreProducts, onOpenQuoteAction }) {
         <video
           className="w-full h-full object-cover object-center"
           src="/hero_bg.mp4"
+          poster="/hero_poster.jpg"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40"></div>
