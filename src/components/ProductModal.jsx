@@ -2,18 +2,45 @@ import React, { useState } from 'react';
 import { 
   X, 
   Package, 
-  CheckCircle2, 
-  Building2, 
+  Check, 
   MessageCircle, 
   Plus, 
   Minus, 
-  Send, 
-  ShieldCheck, 
-  Info,
-  Layers,
-  Sparkles
+  ShieldCheck,
+  Truck
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
+
+const getProductImage = (product) => {
+  if (product.image) return product.image;
+  
+  if (product.category === 'kimyasal') {
+    if (product.volumeSize?.includes('30 LT') || product.volumeSize?.includes('20 LT')) {
+      return '/images/industrial_canister.jpg';
+    }
+    if (product.subCategory?.includes('Sprey')) {
+      return '/images/starter_kit.jpg';
+    }
+    if (product.subCategory?.includes('Çamaşır') || product.name?.includes('Çamaşır')) {
+      return '/images/laundry_pouch.jpg';
+    }
+    if (product.subCategory?.includes('Bulaşık') || product.name?.includes('Bulaşık')) {
+      return '/images/dish_canister.jpg';
+    }
+    if (product.name?.includes('Sabun')) {
+      return '/images/soap_dispenser.jpg';
+    }
+    return '/images/industrial_canister.jpg';
+  }
+  
+  if (product.category === 'sabun') return '/images/soap_dispenser.jpg';
+  if (product.category === 'bulasik') return '/images/dish_canister.jpg';
+  if (product.category === 'kagit') return 'https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=600&auto=format&fit=crop&q=80';
+  if (product.category === 'ambalaj') return 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600&auto=format&fit=crop&q=80';
+  if (product.category === 'cop-torbasi') return 'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=600&auto=format&fit=crop&q=80';
+  if (product.category === 'gerec') return 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80';
+  
+  return '/images/starter_kit.jpg';
+};
 
 export default function ProductModal({ 
   product, 
@@ -21,267 +48,177 @@ export default function ProductModal({
   onAddToQuote 
 }) {
   const [quantity, setQuantity] = useState(1);
-  const [sampleRequested, setSampleRequested] = useState(false);
-  const [sampleForm, setSampleForm] = useState({
-    companyName: '',
-    contactName: '',
-    phone: '',
-    city: '',
-    sampleType: 'Numune & Teknik Fiyat Talebi'
-  });
+  const [justAdded, setJustAdded] = useState(false);
 
   if (!product) return null;
 
   const handleAddWithQty = () => {
     onAddToQuote(product, quantity);
-    onClose();
-  };
-
-  const handleSampleSubmit = (e) => {
-    e.preventDefault();
-    if (!sampleForm.phone || !sampleForm.companyName) {
-      alert('Lütfen Firma Adı ve Telefon numaranızı belirtiniz.');
-      return;
-    }
-    setSampleRequested(true);
-    confetti({
-      particleCount: 50,
-      spread: 60,
-      origin: { y: 0.6 }
-    });
+    setJustAdded(true);
+    setTimeout(() => {
+      onClose();
+    }, 600);
   };
 
   const getWhatsAppLink = () => {
     const text = encodeURIComponent(
-      `Merhaba Burtemis Satış Ekibi, ${product.name} (${quantity} Koli/Birim) hakkında kurumsal toptan fiyat teklifi ve teknik şartname bilgisi rica ediyorum.`
+      `Merhaba Burtemis Satış Ekibi, ${product.name} (${quantity} Koli/Birim) hakkında kurumsal toptan fiyat teklifi rica ediyorum.`
     );
     return `https://wa.me/905321112233?text=${text}`;
   };
 
+  const productImage = getProductImage(product);
+
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-brand-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
-      
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+      onClick={onClose}
+    >
       {/* Modal Box */}
       <div 
-        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-borderSubtle overflow-hidden my-8 text-left"
+        className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden text-left my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-surface-low hover:bg-surface-container text-textDark transition-colors"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors"
           aria-label="Kapat"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Modal Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 max-h-[90vh] overflow-y-auto">
+        {/* Modal Content - 2 Columns (Photo + Info) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
           
-          {/* Left Column: Product Visuals & Specs */}
-          <div className="md:col-span-7 p-6 sm:p-8 space-y-6 border-b md:border-b-0 md:border-r border-borderSubtle">
+          {/* Left Column: Big Clean Product Photo */}
+          <div className="md:col-span-5 bg-[#f8f9fa] p-8 flex flex-col items-center justify-center relative border-b md:border-b-0 md:border-r border-gray-100">
+            <div className="w-full aspect-square max-w-[280px] flex items-center justify-center">
+              <img 
+                src={productImage} 
+                alt={product.name} 
+                className="w-full h-full object-cover rounded-2xl shadow-sm"
+              />
+            </div>
             
-            {/* Header info */}
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
-                  {product.categoryLabel}
-                </span>
-                <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                  {product.badge}
-                </span>
-              </div>
-              <h2 className="text-2xl font-extrabold text-brand-900 leading-snug">
-                {product.name}
-              </h2>
-              <p className="text-xs text-textMuted mt-1">
-                Alt Grup: <span className="font-semibold text-textDark">{product.subCategory}</span>
-              </p>
+            {/* Quick Spec Pill */}
+            <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-gray-600 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-2xs">
+              <Package className="w-3.5 h-3.5 text-[#0038e3]" />
+              <span>{product.volumeSize}</span>
             </div>
-
-            {/* Packaging Highlight Banner */}
-            <div className="bg-surface-low rounded-2xl p-4 border border-borderSubtle flex items-start gap-3.5">
-              <div className="p-2.5 rounded-xl bg-white shadow-xs text-brand-600">
-                <Package className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xs font-bold text-brand-900 block">Koli ve Ambalaj Standardı</span>
-                <p className="text-xs text-textMuted font-medium mt-0.5">{product.packaging}</p>
-                <div className="mt-1 text-[11px] text-brand-700 font-semibold">
-                  Birim Hacim / Ebat: {product.volumeSize}
-                </div>
-              </div>
-            </div>
-
-            {/* Short Description */}
-            <p className="text-xs text-textDark leading-relaxed">
-              {product.shortDesc}
-            </p>
-
-            {/* Technical Specifications Table */}
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-textMuted mb-2 flex items-center gap-1.5">
-                <Info className="w-4 h-4 text-brand-600" />
-                <span>Teknik Özellikler ve Standartlar</span>
-              </h3>
-              <div className="bg-surface-lowest rounded-xl border border-borderSubtle divide-y divide-borderSubtle text-xs">
-                {Object.entries(product.specs || {}).map(([key, val], idx) => (
-                  <div key={idx} className="flex justify-between p-2.5">
-                    <span className="text-textMuted font-medium">{key}</span>
-                    <span className="font-semibold text-brand-900 text-right">{val}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Usage Areas */}
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-textMuted block mb-2">
-                Tavsiye Edilen Kullanım Alanları
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {product.usageAreas?.map((area, idx) => (
-                  <span 
-                    key={idx}
-                    className="text-[11px] font-medium bg-surface-low text-textDark px-2.5 py-1 rounded-lg border border-borderSubtle"
-                  >
-                    {area}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Feature Bullets */}
-            <div className="space-y-1.5 pt-2">
-              {product.features?.map((feat, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-xs text-textDark">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>{feat}</span>
-                </div>
-              ))}
-            </div>
-
           </div>
 
-          {/* Right Column: Actions + Numune / Toplu Teklif Formu */}
-          <div className="md:col-span-5 p-6 sm:p-8 bg-surface-low/50 flex flex-col justify-between space-y-6">
+          {/* Right Column: Clean Product Information & Actions */}
+          <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
             
-            {/* Direct Quote Basket Addition Card */}
-            <div className="bg-white p-5 rounded-2xl border border-borderSubtle shadow-xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-borderSubtle/60">
-                <span className="text-xs font-bold text-brand-900">Teklif Sepetine Ekle</span>
-                <span className="text-[11px] font-semibold text-textMuted">Toptan Fiyat Talebi</span>
+            <div className="space-y-3">
+              {/* Category */}
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0038e3] block">
+                {product.categoryLabel || 'Endüstriyel Ürün'}
+              </span>
+
+              {/* Bold & Trustworthy Title */}
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight leading-snug">
+                {product.name}
+              </h2>
+
+              {/* Packaging */}
+              <div className="text-xs font-medium text-gray-600 bg-gray-50 px-3 py-2 rounded-xl border border-gray-150 inline-block">
+                <span className="text-gray-400">Paketleme / Koli:</span>{' '}
+                <span className="text-gray-900 font-semibold">{product.packaging || product.volumeSize}</span>
               </div>
 
-              {/* Quantity Stepper */}
-              <div>
-                <label className="block text-xs font-medium text-textMuted mb-1.5">
-                  Talep Edilen Tahmini Adet (Koli / Bidon):
-                </label>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center border border-borderSubtle rounded-xl bg-surface-low overflow-hidden">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="p-2 hover:bg-surface-container text-textDark"
-                      title="Azalt"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="w-12 text-center text-xs font-bold text-brand-900">
-                      {quantity}
-                    </span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="p-2 hover:bg-surface-container text-textDark"
-                      title="Artır"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <span className="text-xs text-textMuted font-medium">Birim / Koli</span>
+              {/* Short Description */}
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal pt-1">
+                {product.shortDesc}
+              </p>
+
+              {/* Key Features List (Max 3, clean checkmarks) */}
+              {product.features && product.features.length > 0 && (
+                <div className="pt-2 space-y-1.5">
+                  {product.features.slice(0, 3).map((feat, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-xs font-medium text-gray-700">
+                      <div className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 stroke-[2.5]" />
+                      </div>
+                      <span>{feat}</span>
+                    </div>
+                  ))}
                 </div>
+              )}
+            </div>
+
+            {/* Actions: Stepper + Add To Basket + WhatsApp */}
+            <div className="pt-4 border-t border-gray-100 space-y-3">
+              
+              <div className="flex items-center gap-3">
+                {/* Quantity Stepper */}
+                <div className="flex items-center border border-gray-200 rounded-xl bg-gray-50/60 p-1">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-8 h-8 rounded-lg hover:bg-white text-gray-700 flex items-center justify-center transition-colors"
+                    title="Azalt"
+                  >
+                    <Minus className="w-3.5 h-3.5" />
+                  </button>
+                  <span className="w-10 text-center text-sm font-bold text-gray-900">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-8 h-8 rounded-lg hover:bg-white text-gray-700 flex items-center justify-center transition-colors"
+                    title="Artır"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
+                {/* Primary Add to Basket Button */}
+                <button
+                  onClick={handleAddWithQty}
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold text-xs sm:text-sm tracking-wide shadow-md transition-all active:scale-95 ${
+                    justAdded
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-[#0038e3] hover:bg-[#002bb8] text-white shadow-blue-600/20'
+                  }`}
+                >
+                  {justAdded ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      <span>Sepete Eklendi!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-4 h-4" />
+                      <span>Teklif Sepetine Ekle ({quantity} Adet)</span>
+                    </>
+                  )}
+                </button>
               </div>
 
-              {/* Add to Basket Action */}
-              <button
-                onClick={handleAddWithQty}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-600/20 active:scale-95 transition-all"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Teklif Sepetime Ekle ({quantity} Adet)</span>
-              </button>
-
-              {/* WhatsApp Single Product Link */}
+              {/* Quick WhatsApp Action */}
               <a
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-semibold text-xs transition-colors"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>Bu Ürün İçin WhatsApp Teklifi Al</span>
+                <span>WhatsApp ile Hızlı Fiyat İste</span>
               </a>
-            </div>
 
-            {/* Numune / Toplu Sipariş Talep Formu */}
-            <div className="bg-white p-5 rounded-2xl border border-borderSubtle shadow-xs">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-4 h-4 text-accentOrange" />
-                <h3 className="text-xs font-bold text-brand-900">Numune / Şartname Talebi</h3>
+              {/* Trust badges */}
+              <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1">
+                <span className="flex items-center gap-1 font-medium">
+                  <Truck className="w-3.5 h-3.5 text-gray-500" />
+                  Hızlı Kurumsal Sevkiyat
+                </span>
+                <span className="flex items-center gap-1 font-medium">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  B2B Toptan Fiyat Garantisi
+                </span>
               </div>
-              <p className="text-[11px] text-textMuted mb-3">
-                Fabrika veya kurumunuz için bu üründen ücretsiz numune veya detaylı teknik şartname talep edebilirsiniz.
-              </p>
 
-              {sampleRequested ? (
-                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs space-y-1 text-center">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-600 mx-auto mb-1" />
-                  <span className="font-bold block">Talebiniz Alındı!</span>
-                  <p className="text-[11px] text-emerald-700">
-                    Müşteri temsilcimiz numune gönderimi için firmanızla 30 dakika içinde iletişime geçecektir.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSampleSubmit} className="space-y-2.5">
-                  <input
-                    type="text"
-                    placeholder="Firma / Kurum Ünvanı *"
-                    required
-                    value={sampleForm.companyName}
-                    onChange={(e) => setSampleForm({ ...sampleForm, companyName: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle text-textDark placeholder:text-textMuted/60 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Yetkili Adı Soyadı"
-                    value={sampleForm.contactName}
-                    onChange={(e) => setSampleForm({ ...sampleForm, contactName: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle text-textDark placeholder:text-textMuted/60 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Telefon Numarası *"
-                    required
-                    value={sampleForm.phone}
-                    onChange={(e) => setSampleForm({ ...sampleForm, phone: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle text-textDark placeholder:text-textMuted/60 focus:outline-none focus:ring-1 focus:ring-brand-500"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-brand-900 hover:bg-brand-800 text-white font-bold text-xs transition-colors"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Numune Gönderimi Talep Et</span>
-                  </button>
-                </form>
-              )}
-            </div>
-
-            {/* Micro note */}
-            <div className="flex items-center gap-2 text-[11px] text-textMuted">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-              <span>Verilen bilgiler yalnızca teklif ve numune iletişimi için kullanılır.</span>
             </div>
 
           </div>
@@ -289,7 +226,6 @@ export default function ProductModal({
         </div>
 
       </div>
-
     </div>
   );
 }

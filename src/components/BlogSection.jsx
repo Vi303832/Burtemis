@@ -20,10 +20,6 @@ export default function BlogSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-semibold mb-2">
-              <BookOpen className="w-3.5 h-3.5 text-brand-600" />
-              <span>Sektörel Hijyen & Rehber Kütüphanesi</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-900 tracking-tight">
               Sektörel Çözümler & Satın Alma Rehberi
             </h2>
@@ -43,7 +39,7 @@ export default function BlogSection() {
             >
               <div>
                 <div className="flex items-center justify-between text-xs text-textMuted mb-3">
-                  <span className="font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
+                  <span className="font-medium text-gray-500">
                     {post.category}
                   </span>
                   <span className="flex items-center gap-1 font-medium">
@@ -85,13 +81,10 @@ export default function BlogSection() {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
-                {selectedPost.category}
-              </span>
-              <span className="text-xs text-textMuted">
-                {selectedPost.readTime}
-              </span>
+            <div className="flex items-center gap-2 mb-2 text-xs text-gray-500 font-medium">
+              <span>{selectedPost.category}</span>
+              <span>•</span>
+              <span>{selectedPost.readTime}</span>
             </div>
 
             <h2 className="text-2xl font-extrabold text-brand-900 leading-snug mb-4">

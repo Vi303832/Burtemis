@@ -46,7 +46,7 @@ export default function ReviewsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Section Heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal font-serif sm:font-sans tracking-tight mb-12">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight mb-12">
           100.000+ 5 Yıldızlı Yorum ve Güven
         </h2>
 

@@ -52,10 +52,6 @@ export default function CorporateSolutions({ onOpenQuoteForm }) {
         
         {/* Top Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold mb-3">
-            <Building className="w-3.5 h-3.5" />
-            <span>Kurumsal B2B Tedarik Çözümleri</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-900 tracking-tight">
             Ofis ve Endüstriyel Tesisler İçin Stratejik Avantajlar
           </h2>

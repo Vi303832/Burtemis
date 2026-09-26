@@ -1,80 +1,92 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Search, 
-  Filter, 
   Plus, 
   Check, 
-  MessageCircle, 
-  Info, 
-  Package, 
-  ShieldCheck, 
-  SlidersHorizontal,
-  Layers,
-  Sparkles,
-  ExternalLink
+  Package
 } from 'lucide-react';
 import { CATEGORIES, PRODUCTS } from '../data/products';
 
-export default function ProductCatalog({ 
-  activeCategory, 
-  onSelectCategory, 
-  onAddToQuote, 
+// Clean, high quality professional product images mapper
+const getProductImage = (product) => {
+  if (product.image) return product.image;
+  
+  if (product.category === 'kimyasal') {
+    if (product.volumeSize?.includes('30 LT') || product.volumeSize?.includes('20 LT')) {
+      return '/images/industrial_canister.jpg';
+    }
+    if (product.subCategory?.includes('Sprey')) {
+      return '/images/starter_kit.jpg';
+    }
+    if (product.subCategory?.includes('Çamaşır') || product.name?.includes('Çamaşır')) {
+      return '/images/laundry_pouch.jpg';
+    }
+    if (product.subCategory?.includes('Bulaşık') || product.name?.includes('Bulaşık')) {
+      return '/images/dish_canister.jpg';
+    }
+    if (product.name?.includes('Sabun')) {
+      return '/images/soap_dispenser.jpg';
+    }
+    return '/images/industrial_canister.jpg';
+  }
+  
+  if (product.category === 'sabun') {
+    return '/images/soap_dispenser.jpg';
+  }
+  if (product.category === 'bulasik') {
+    return '/images/dish_canister.jpg';
+  }
+  if (product.category === 'kagit') {
+    return 'https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=600&auto=format&fit=crop&q=80';
+  }
+  if (product.category === 'ambalaj') {
+    return 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600&auto=format&fit=crop&q=80';
+  }
+  if (product.category === 'cop-torbasi') {
+    return 'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=600&auto=format&fit=crop&q=80';
+  }
+  if (product.category === 'gerec') {
+    return 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80';
+  }
+  
+  return '/images/starter_kit.jpg';
+};
+
+export default function ProductCatalog({
+  activeCategory,
+  onSelectCategory,
+  onAddToQuote,
   onViewProductDetail,
   quoteItems = []
 }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedSubFilter, setSelectedSubFilter] = useState('all');
-  const [sortOption, setSortOption] = useState('popular');
   const [addedItemAnimation, setAddedItemAnimation] = useState(null);
 
-  // Extract unique subcategories/volumes for quick filter pills
-  const availableSubFilters = useMemo(() => {
-    const filters = new Set();
-    const targetProducts = activeCategory === 'all' 
-      ? PRODUCTS 
-      : PRODUCTS.filter(p => p.category === activeCategory);
-    
-    targetProducts.forEach(p => {
-      if (p.volumeSize) filters.add(p.volumeSize);
-    });
-    return Array.from(filters);
-  }, [activeCategory]);
-
-  // Filtered & searched products
+  // Filter products by category & search
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
-      // Category match
-      const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
+      const matchesCategory = 
+        activeCategory === 'all' || product.category === activeCategory;
       
-      // Sub filter match (e.g. Volume/Size)
-      const matchesSubFilter = selectedSubFilter === 'all' || product.volumeSize === selectedSubFilter;
-      
-      // Search query match (Title, subCategory, features, packaging)
-      const query = searchQuery.toLowerCase().trim();
-      const matchesSearch = !query || (
-        product.name.toLowerCase().includes(query) ||
-        product.subCategory.toLowerCase().includes(query) ||
-        product.packaging.toLowerCase().includes(query) ||
-        product.shortDesc.toLowerCase().includes(query) ||
-        product.features.some(f => f.toLowerCase().includes(query))
-      );
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch = 
+        !q ||
+        product.name.toLowerCase().includes(q) ||
+        product.shortDesc.toLowerCase().includes(q) ||
+        product.packaging.toLowerCase().includes(q) ||
+        product.volumeSize.toLowerCase().includes(q);
 
-      return matchesCategory && matchesSubFilter && matchesSearch;
+      return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, selectedSubFilter, searchQuery]);
+  }, [activeCategory, searchQuery]);
 
   const handleAddClick = (product, e) => {
     e.stopPropagation();
-    onAddToQuote(product);
+    onAddToQuote(product, 1);
     setAddedItemAnimation(product.id);
     setTimeout(() => {
       setAddedItemAnimation(null);
     }, 1200);
-  };
-
-  const getWhatsAppLink = (productName) => {
-    const text = encodeURIComponent(`Merhaba, Burtemis ${productName} hakkında toptan kurumsal fiyat teklifi almak istiyorum.`);
-    return `https://wa.me/905321112233?text=${text}`;
   };
 
   const isItemInQuote = (productId) => {
@@ -82,341 +94,165 @@ export default function ProductCatalog({
   };
 
   return (
-    <section id="urunler" className="py-16 bg-surface min-h-screen">
+    <section id="urunler" className="py-16 sm:py-20 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="mb-10 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold mb-2">
-            <Package className="w-3.5 h-3.5" />
-            <span>Burtemis Ürün Kataloğu & Teknik Şartnameler</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-900 tracking-tight">
-            Endüstriyel Ürünlerimiz
+        {/* Section Header - Clean & Simple, no pill badges */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+            Ürün Kataloğu
           </h2>
-          <p className="mt-2 text-textMuted text-sm sm:text-base max-w-2xl">
-            Tüm ürünlerimizde B2B toptan fiyat teklifi esastır. Kartlardan doğrudan teklif sepetinize ekleyebilir veya WhatsApp üzerinden tek tıkla özel fiyat talep edebilirsiniz.
+          <p className="text-sm text-gray-500 mt-2 font-normal">
+            Tüm endüstriyel hijyen, kağıt ve sarf malzeme çözümlerimizi inceleyebilir, listenize ekleyerek toptan fiyat teklifi alabilirsiniz.
           </p>
         </div>
 
-        {/* Layout: Sidebar Filter (Desktop) + Products Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Minimal Search & Category Filter Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-gray-100">
           
-          {/* Left Sidebar Filters */}
-          <aside className="lg:col-span-3 space-y-6">
-            
-            {/* Search Box */}
-            <div className="bg-white p-4 rounded-2xl border border-borderSubtle/80 shadow-xs">
-              <label className="block text-xs font-bold uppercase tracking-wider text-textMuted mb-2">
-                Hızlı Ürün Arama
-              </label>
-              <div className="relative">
-                <Search className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Ürün adı, koli, hacim..."
-                  className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500 text-textDark placeholder:text-textMuted/60"
-                />
-                {searchQuery && (
-                  <button 
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-textMuted hover:text-textDark bg-surface-container px-1.5 py-0.5 rounded"
-                  >
-                    Temizle
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Category Navigation List */}
-            <div className="bg-white p-4 rounded-2xl border border-borderSubtle/80 shadow-xs">
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-borderSubtle/50">
-                <span className="text-xs font-bold uppercase tracking-wider text-textMuted">
-                  Kategoriler
-                </span>
-                <span className="text-[11px] font-semibold text-brand-600">
-                  {CATEGORIES.length - 1} Kategori
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                {CATEGORIES.map((cat) => {
-                  const isActive = activeCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        onSelectCategory(cat.id);
-                        setSelectedSubFilter('all');
-                      }}
-                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-                        isActive
-                          ? 'bg-brand-600 text-white shadow-sm'
-                          : 'text-textDark hover:bg-surface-low'
-                      }`}
-                    >
-                      <span className="truncate">{cat.name}</span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full ${
-                        isActive ? 'bg-white/20 text-white' : 'bg-surface-container text-textMuted'
-                      }`}>
-                        {cat.count}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Sub Filter: Hacim & Ambalaj Boyutu */}
-            {availableSubFilters.length > 0 && (
-              <div className="bg-white p-4 rounded-2xl border border-borderSubtle/80 shadow-xs">
-                <span className="block text-xs font-bold uppercase tracking-wider text-textMuted mb-3 pb-2 border-b border-borderSubtle/50">
-                  Ambalaj & Hacim Filtresi
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  <button
-                    onClick={() => setSelectedSubFilter('all')}
-                    className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all ${
-                      selectedSubFilter === 'all'
-                        ? 'bg-brand-900 text-white'
-                        : 'bg-surface-low text-textDark hover:bg-surface-container'
-                    }`}
-                  >
-                    Tümü
-                  </button>
-                  {availableSubFilters.map((sub, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedSubFilter(sub)}
-                      className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
-                        selectedSubFilter === sub
-                          ? 'bg-brand-600 text-white'
-                          : 'bg-surface-low text-textDark hover:bg-surface-container'
-                      }`}
-                    >
-                      {sub}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Quick B2B Info Box */}
-            <div className="bg-gradient-to-br from-brand-900 to-brand-800 text-white p-5 rounded-2xl shadow-sm text-left space-y-3">
-              <div className="flex items-center gap-2 text-brand-200 text-xs font-bold uppercase tracking-wider">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>B2B Toptan Sipariş</span>
-              </div>
-              <p className="text-xs text-brand-100/90 leading-relaxed">
-                İhaleler, kamu kurumları ve fabrikalar için koli bazlı toplu alımlarda özel iskonto ve vadeli ödeme seçenekleri sunulmaktadır.
-              </p>
-              <div className="pt-2">
-                <a
-                  href="tel:+902120000000"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-emerald-300 hover:text-emerald-200"
-                >
-                  <span>Müşteri Temsilcisi: 0850 300 00 00</span>
-                </a>
-              </div>
-            </div>
-
-          </aside>
-
-          {/* Right Product Grid */}
-          <main className="lg:col-span-9 space-y-6">
-            
-            {/* Top Toolbar: Found count + Active filters summary */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-borderSubtle/80 shadow-xs">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-brand-900">
-                  {filteredProducts.length} Ürün Listeleniyor
-                </span>
-                {activeCategory !== 'all' && (
-                  <span className="text-xs font-medium text-brand-600 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
-                    {CATEGORIES.find(c => c.id === activeCategory)?.name}
-                  </span>
-                )}
-                {selectedSubFilter !== 'all' && (
-                  <span className="text-xs font-medium text-accentOrange bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                    {selectedSubFilter}
-                  </span>
-                )}
-              </div>
-
-              {/* Status info */}
-              <div className="text-xs text-textMuted flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span>Tüm ürünler anında sevkiyata hazırdır</span>
-              </div>
-            </div>
-
-            {/* Products Card Grid */}
-            {filteredProducts.length === 0 ? (
-              <div className="text-center py-16 bg-white rounded-3xl border border-borderSubtle p-8 space-y-3">
-                <Package className="w-12 h-12 text-textMuted/40 mx-auto" />
-                <h3 className="text-base font-bold text-brand-900">Aradığınız kriterlere uygun ürün bulunamadı</h3>
-                <p className="text-xs text-textMuted">Lütfen arama terimini değiştirin veya kategori filtresini sıfırlayın.</p>
+          {/* Categories Pill Navigation - Clean & Neutral */}
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
                 <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    onSelectCategory('all');
-                    setSelectedSubFilter('all');
-                  }}
-                  className="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors"
+                  key={cat.id}
+                  onClick={() => onSelectCategory(cat.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+                    isActive
+                      ? 'bg-gray-900 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200/80 hover:text-gray-900'
+                  }`}
                 >
-                  Filtreleri Sıfırla
+                  {cat.name}
                 </button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredProducts.map((product) => {
-                  const inQuote = isItemInQuote(product.id);
-                  const isJustAdded = addedItemAnimation === product.id;
+              );
+            })}
+          </div>
 
-                  return (
-                    <div
-                      key={product.id}
-                      className="group flex flex-col justify-between rounded-2xl bg-white border border-borderSubtle/80 hover:border-brand-300 hover:shadow-card-hover transition-all duration-300 overflow-hidden text-left"
-                    >
-                      {/* Product Header / Visual Preview Header */}
-                      <div className="relative p-5 pb-3">
-                        
-                        {/* Top Badges */}
-                        <div className="flex items-center justify-between mb-3">
-                          <span className={`text-[10px] font-bold text-white px-2.5 py-0.5 rounded-full shadow-xs ${product.badgeColor || 'bg-brand-600'}`}>
-                            {product.badge}
-                          </span>
-                          <span className="text-[11px] font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200">
-                            {product.volumeSize}
-                          </span>
-                        </div>
-
-                        {/* Visual Icon Presentation Box */}
-                        <div 
-                          onClick={() => onViewProductDetail(product)}
-                          className="h-32 rounded-xl bg-gradient-to-b from-surface-low to-surface-container flex flex-col items-center justify-center p-4 cursor-pointer relative overflow-hidden group-hover:from-brand-50 group-hover:to-brand-100/50 transition-colors"
-                        >
-                          <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-600 group-hover:scale-110 transition-transform">
-                            {product.category === 'kimyasal' && <span className="text-2xl">🧴</span>}
-                            {product.category === 'kagit' && <span className="text-2xl">🧻</span>}
-                            {product.category === 'ambalaj' && <span className="text-2xl">☕</span>}
-                            {product.category === 'cop-torbasi' && <span className="text-2xl">🗑️</span>}
-                            {product.category === 'gerec' && <span className="text-2xl">🧹</span>}
-                          </div>
-                          <span className="text-[11px] font-semibold text-textMuted mt-2 group-hover:text-brand-700 transition-colors">
-                            {product.subCategory}
-                          </span>
-                          
-                          {/* Quick Spec Overlay button */}
-                          <div className="absolute inset-0 bg-brand-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold gap-1 backdrop-blur-xs">
-                            <Info className="w-4 h-4" />
-                            <span>Teknik Şartnameyi Aç</span>
-                          </div>
-                        </div>
-
-                        {/* Title & Packaging */}
-                        <div className="mt-4">
-                          <h3 
-                            onClick={() => onViewProductDetail(product)}
-                            className="text-sm font-bold text-brand-900 hover:text-brand-600 transition-colors cursor-pointer line-clamp-2 min-h-[2.5rem]"
-                            title={product.name}
-                          >
-                            {product.name}
-                          </h3>
-
-                          {/* Packaging info highlight (as requested by user) */}
-                          <div className="mt-2.5 flex items-center gap-1.5 text-xs text-textDark bg-surface-low px-2.5 py-1.5 rounded-lg border border-borderSubtle/60">
-                            <Package className="w-3.5 h-3.5 text-brand-600 flex-shrink-0" />
-                            <span className="font-semibold truncate">{product.packaging}</span>
-                          </div>
-
-                          <p className="mt-2 text-xs text-textMuted line-clamp-2 leading-relaxed">
-                            {product.shortDesc}
-                          </p>
-                        </div>
-
-                      </div>
-
-                      {/* Technical Features Mini List */}
-                      <div className="px-5 py-2 border-t border-borderSubtle/40 bg-surface-low/30">
-                        <div className="space-y-1">
-                          {product.features.slice(0, 2).map((feat, fIdx) => (
-                            <div key={fIdx} className="flex items-center gap-1.5 text-[11px] text-textMuted">
-                              <span className="w-1 h-1 rounded-full bg-brand-500"></span>
-                              <span className="truncate">{feat}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Action Buttons: Dual CTA (Teklife Ekle + WhatsApp Teklifi) */}
-                      <div className="p-4 pt-3 border-t border-borderSubtle/60 bg-white space-y-2">
-                        
-                        {/* Primary Button: Teklif Listeme Ekle */}
-                        <button
-                          onClick={(e) => handleAddClick(product, e)}
-                          className={`w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all shadow-sm ${
-                            isJustAdded
-                              ? 'bg-emerald-600 text-white scale-[1.02]'
-                              : inQuote
-                              ? 'bg-brand-50 text-brand-700 border border-brand-300 hover:bg-brand-100'
-                              : 'bg-brand-600 text-white hover:bg-brand-700 active:scale-95'
-                          }`}
-                          id={`add-quote-${product.id}`}
-                        >
-                          {isJustAdded ? (
-                            <>
-                              <Check className="w-4 h-4 text-white" />
-                              <span>Sepete Eklendi!</span>
-                            </>
-                          ) : inQuote ? (
-                            <>
-                              <Check className="w-4 h-4 text-emerald-600" />
-                              <span>Listede Var (Tekrar Ekle +)</span>
-                            </>
-                          ) : (
-                            <>
-                              <Plus className="w-4 h-4" />
-                              <span>Teklif Listeme Ekle</span>
-                            </>
-                          )}
-                        </button>
-
-                        {/* Secondary Button: Hızlı WhatsApp Teklifi */}
-                        <div className="grid grid-cols-2 gap-2">
-                          <a
-                            href={getWhatsAppLink(product.name)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-emerald-300 bg-emerald-50/60 hover:bg-emerald-100/80 text-emerald-800 text-[11px] font-bold transition-colors"
-                            title="WhatsApp'tan Hızlı Fiyat Sor"
-                          >
-                            <MessageCircle className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                            <span className="truncate">WhatsApp Teklif</span>
-                          </a>
-
-                          <button
-                            onClick={() => onViewProductDetail(product)}
-                            className="flex items-center justify-center gap-1 py-2 px-2 rounded-xl border border-borderSubtle bg-surface-low hover:bg-surface-container text-textDark text-[11px] font-semibold transition-colors"
-                          >
-                            <Info className="w-3.5 h-3.5 text-textMuted" />
-                            <span>Özellikler</span>
-                          </button>
-                        </div>
-
-                      </div>
-
-                    </div>
-                  );
-                })}
-              </div>
+          {/* Minimal Search Input */}
+          <div className="relative w-full md:w-64">
+            <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Ürün ara..."
+              className="w-full pl-8 pr-3 py-1.5 text-xs rounded-full bg-gray-50 border border-gray-200 focus:bg-white focus:border-gray-400 focus:outline-none transition-colors"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-gray-400 hover:text-gray-700"
+              >
+                ✕
+              </button>
             )}
-
-          </main>
+          </div>
 
         </div>
+
+        {/* Products Grid - Extremely Simple: Photo + Info Only */}
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-16 bg-gray-50 rounded-2xl p-8 space-y-3">
+            <Package className="w-10 h-10 text-gray-300 mx-auto" />
+            <h3 className="text-sm font-medium text-gray-900">Aradığınız kriterlere uygun ürün bulunamadı</h3>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                onSelectCategory('all');
+              }}
+              className="text-xs text-[#0038e3] font-medium hover:underline"
+            >
+              Filtreleri Temizle
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-left">
+            {filteredProducts.map((product) => {
+              const inQuote = isItemInQuote(product.id);
+              const isJustAdded = addedItemAnimation === product.id;
+              const productImage = getProductImage(product);
+
+              return (
+                <div
+                  key={product.id}
+                  onClick={() => onViewProductDetail(product)}
+                  className="group bg-white rounded-2xl border border-gray-100/90 hover:border-gray-300 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer"
+                >
+                  {/* Product Photo Box - Clean, Neutral Background */}
+                  <div className="relative w-full aspect-square bg-[#f8f9fa] overflow-hidden flex items-center justify-center p-4">
+                    <img 
+                      src={productImage} 
+                      alt={product.name} 
+                      loading="lazy"
+                      className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  {/* Product Info - Simple & Clear */}
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      {/* Packaging / Volume Tag */}
+                      <span className="text-[11px] font-medium text-gray-400 block mb-1">
+                        {product.packaging || product.volumeSize}
+                      </span>
+
+                      {/* Product Name */}
+                      <h3 
+                        className="text-sm font-medium text-gray-900 group-hover:text-[#0038e3] transition-colors line-clamp-2 leading-snug"
+                        title={product.name}
+                      >
+                        {product.name}
+                      </h3>
+
+                      {/* Short Description */}
+                      <p className="text-xs text-gray-500 mt-1.5 line-clamp-2 leading-relaxed font-light">
+                        {product.shortDesc}
+                      </p>
+                    </div>
+
+                    {/* Action Button - Simple & Clean */}
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <span className="text-xs font-semibold text-gray-800">
+                        {product.volumeSize}
+                      </span>
+
+                      <button
+                        onClick={(e) => handleAddClick(product, e)}
+                        className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                          isJustAdded
+                            ? 'bg-emerald-600 text-white'
+                            : inQuote
+                            ? 'bg-blue-50 text-[#0038e3] border border-blue-200'
+                            : 'bg-gray-900 hover:bg-[#0038e3] text-white'
+                        }`}
+                      >
+                        {isJustAdded ? (
+                          <>
+                            <Check className="w-3.5 h-3.5" />
+                            <span>Eklendi</span>
+                          </>
+                        ) : inQuote ? (
+                          <>
+                            <Check className="w-3.5 h-3.5" />
+                            <span>Listede</span>
+                          </>
+                        ) : (
+                          <>
+                            <Plus className="w-3.5 h-3.5" />
+                            <span>Teklife Ekle</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
       </div>
     </section>

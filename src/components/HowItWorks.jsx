@@ -39,11 +39,6 @@ export default function HowItWorks({ onFaqClick }) {
 
           {/* Right Column: Steps & Story */}
           <div className="lg:col-span-6 space-y-6 text-left">
-            
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#0038e3]">
-              AKILLI VE ÇEVRECİ SİSTEM
-            </span>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif sm:font-sans font-normal text-gray-900 tracking-tight">
               Nasıl Çalışır?
             </h2>

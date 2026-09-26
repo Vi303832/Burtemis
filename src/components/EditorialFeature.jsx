@@ -22,11 +22,6 @@ export default function EditorialFeature({ onLearnMore }) {
 
           {/* Overlapping Floating White Card on Right */}
           <div className="relative z-10 m-4 sm:m-8 lg:mr-16 max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-2xl border border-gray-100/80 text-left animate-fadeIn">
-            
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#0038e3] block mb-2">
-              SÜRDÜRÜLEBİLİR GELECEK
-            </span>
-
             <h2 className="text-2xl sm:text-3xl font-serif sm:font-sans font-normal text-gray-900 tracking-tight leading-tight">
               Tüm Gezegenin Hissedeceği Kusursuz Bir Temizlik
             </h2>

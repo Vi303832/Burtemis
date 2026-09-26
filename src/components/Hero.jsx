@@ -20,7 +20,7 @@ export default function Hero({ onExploreProducts, onOpenQuoteAction }) {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-5 animate-fadeIn">
         
         {/* Main Title matching the screenshot style */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight font-serif sm:font-sans">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
           The Coast We Keep Koleksiyonu
         </h1>
 

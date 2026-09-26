@@ -6,7 +6,7 @@ export default function StartJourneyCTA({ onGetStarted }) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* Title */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif sm:font-sans font-normal text-gray-900 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-gray-900 tracking-tight">
           Temizlik Yolculuğunuza Bugün Başlayın
         </h2>
 

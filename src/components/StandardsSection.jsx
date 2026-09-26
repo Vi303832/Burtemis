@@ -65,13 +65,8 @@ export default function StandardsSection({ onLearnMore }) {
     <section id="standartlar" className="py-20 sm:py-24 bg-[#f8faff] border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        {/* Eyebrow */}
-        <span className="text-[11px] font-bold tracking-[0.2em] text-[#0038e3] uppercase block mb-2">
-          SERTİFİKALARIMIZ & KALİTE GÜVENCESİ
-        </span>
-
         {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif sm:font-sans font-normal text-gray-900 tracking-tight mb-14">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 tracking-tight mb-14">
           Temizlikte Daha Yüksek Bir Standart
         </h2>
 

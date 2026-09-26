@@ -41,7 +41,10 @@ export default {
         borderSubtle: '#e2e6f0',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Poppins', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       boxShadow: {
         'clean': '0 2px 10px rgba(0, 30, 80, 0.04)',

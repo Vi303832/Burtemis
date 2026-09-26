@@ -175,11 +175,6 @@ export default function Header({
                 className="relative hover:text-[#0038e3] transition-colors py-1 flex items-center gap-1 group"
               >
                 <span>{cat.label}</span>
-                {cat.badge && (
-                  <span className="text-[10px] uppercase font-bold px-1.5 py-0.2 bg-blue-50 text-[#0038e3] rounded-full border border-blue-200">
-                    {cat.badge}
-                  </span>
-                )}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0038e3] transition-all duration-200 group-hover:w-full"></span>
               </button>
             ))}

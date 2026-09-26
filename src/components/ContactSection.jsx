@@ -4,15 +4,10 @@ import {
   Phone, 
   Mail, 
   MapPin, 
-  Clock, 
   MessageCircle, 
   CheckCircle2, 
   Paperclip, 
-  FileSpreadsheet, 
-  ShieldCheck, 
-  Building2,
-  Sparkles,
-  Zap
+  Clock
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -25,7 +20,6 @@ export default function ContactSection() {
     phone: '',
     email: '',
     categoryInterest: 'Tüm Kalemler (Karma Liste)',
-    city: 'İstanbul',
     notes: ''
   });
 
@@ -43,114 +37,76 @@ export default function ContactSection() {
     }
     setFormSubmitted(true);
     confetti({
-      particleCount: 70,
-      spread: 60,
+      particleCount: 50,
+      spread: 50,
       origin: { y: 0.6 }
     });
   };
 
   return (
-    <section id="iletisim" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="iletisim" className="py-16 sm:py-20 bg-[#fafafa] border-t border-gray-100">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Prominent 30-Minute Fast Quote Band (As requested) */}
-        <div className="relative rounded-3xl bg-gradient-to-r from-brand-600 via-brand-700 to-brand-800 text-white p-6 sm:p-8 shadow-xl shadow-brand-600/20 mb-16 overflow-hidden">
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center flex-shrink-0 text-amber-300">
-                <Zap className="w-7 h-7" />
-              </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5 justify-center md:justify-start">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  30 Dakika İade Garantili Teklif Süresi
-                </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold mt-0.5">
-                  Toplu Temizlik ve Ambalaj Malzemesi İhtiyaçlarınız İçin Liste Gönderin
-                </h3>
-                <p className="text-xs sm:text-sm text-brand-100 mt-1 max-w-2xl">
-                  Mevcut tüketim listenizi veya Excel dosyanızı iletin; uzman ekibimiz en uygun birim fiyatları ve iskonto oranlarını 30 dakikada çıkarsın.
-                </p>
-              </div>
-            </div>
-
-            <a
-              href="https://wa.me/905321112233?text=Merhaba,%20toplu%20temizlik%20ve%20ambalaj%20malzemesi%20ihtiyaç%20listemizi%20ileterek%20teklif%20almak%20istiyoruz."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs shadow-lg transition-transform active:scale-95 flex-shrink-0"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>WhatsApp'tan Liste Gönder</span>
-            </a>
-          </div>
+        {/* Simple & Clean Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+            Kurumsal Fiyat Teklifi Alın
+          </h2>
+          <p className="text-sm text-gray-500 mt-2 font-normal">
+            İhtiyaç listenizi bize iletin, satış ekibimiz en kısa sürede firmanıza özel toptan fiyat çalışmasıyla dönüş yapsın.
+          </p>
         </div>
 
-        {/* Grid: Form on Left, Contact Info on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
+        {/* 2-Column Minimal Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Lead Generation Quote Form */}
-          <div className="lg:col-span-7 bg-surface-low rounded-3xl p-6 sm:p-10 border border-borderSubtle">
-            
-            <div className="mb-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
-                Lead Generation & Kurumsal Teklif
-              </span>
-              <h3 className="text-2xl font-extrabold text-brand-900 mt-2">
-                Toplu Sipariş / Toptan Satış Teklif Formu
-              </h3>
-              <p className="text-xs sm:text-sm text-textMuted mt-1">
-                Aşağıdaki formu doldurarak kurumunuza özel fiyat teklifi talebinde bulunabilirsiniz.
-              </p>
-            </div>
+          {/* Left Column: Minimal Quote Form */}
+          <div className="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-gray-200/80 shadow-xs text-left">
+            <h3 className="text-base font-semibold text-gray-900 mb-6">
+              Teklif Talep Formu
+            </h3>
 
             {formSubmitted ? (
-              <div className="p-8 rounded-2xl bg-white border border-emerald-200 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200">
-                  <CheckCircle2 className="w-8 h-8" />
+              <div className="py-10 text-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h4 className="text-xl font-bold text-brand-900">
-                  Teklif Talebiniz Başarıyla İletildi!
+                <h4 className="text-lg font-semibold text-gray-900">
+                  Talebiniz Alındı
                 </h4>
-                <p className="text-xs text-textMuted max-w-md mx-auto leading-relaxed">
-                  Sayın <span className="font-bold text-textDark">{formData.fullName}</span>, <span className="font-bold text-textDark">{formData.companyName}</span> için hazırlayacağımız özel fiyat teklifi en geç 30 dakika içinde tarafınıza iletilecektir.
+                <p className="text-xs text-gray-500 max-w-sm mx-auto leading-relaxed">
+                  Sayın <span className="font-medium text-gray-800">{formData.fullName}</span>, <span className="font-medium text-gray-800">{formData.companyName}</span> için hazırlanan özel teklifimiz en kısa sürede iletilecektir.
                 </p>
-                <div className="pt-2">
-                  <button
-                    onClick={() => {
-                      setFormSubmitted(false);
-                      setSelectedFileName('');
-                    }}
-                    className="px-5 py-2.5 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors"
-                  >
-                    Yeni Teklif Talebi Gönder
-                  </button>
-                </div>
+                <button
+                  onClick={() => {
+                    setFormSubmitted(false);
+                    setSelectedFileName('');
+                  }}
+                  className="mt-2 text-xs font-semibold text-[#0038e3] hover:underline"
+                >
+                  Yeni Form Doldur
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 
                 <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
                     Firma / Kurum Ünvanı *
                   </label>
-                  <div className="relative">
-                    <Building2 className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="text"
-                      required
-                      placeholder="Örn: Burtemis Endüstriyel A.Ş."
-                      value={formData.companyName}
-                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl bg-white border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Örn: ABC Lojistik A.Ş."
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors"
+                  />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-textDark mb-1">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       Yetkili Adı Soyadı *
                     </label>
                     <input
@@ -159,86 +115,77 @@ export default function ContactSection() {
                       placeholder="Adınız ve Soyadınız"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full px-3 py-2.5 text-xs rounded-xl bg-white border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
+                      className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-textDark mb-1">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       Telefon Numarası *
                     </label>
-                    <div className="relative">
-                      <Phone className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="tel"
-                        required
-                        placeholder="05XX XXX XX XX"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl bg-white border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                      />
-                    </div>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="05XX XXX XX XX"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors"
+                    />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-textDark mb-1">
-                      Kurumsal E-Posta
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                      E-Posta Adresi
                     </label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="email"
-                        placeholder="satinalma@firma.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl bg-white border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      placeholder="ad.soyad@firma.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors"
+                    />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-textDark mb-1">
-                      İlgilendiğiniz Ana Kategori
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                      İlgilendiğiniz Kategori
                     </label>
                     <select
                       value={formData.categoryInterest}
                       onChange={(e) => setFormData({ ...formData, categoryInterest: e.target.value })}
-                      className="w-full px-3 py-2.5 text-xs rounded-xl bg-white border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
+                      className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors"
                     >
                       <option value="Tüm Kalemler (Karma Liste)">Tüm Kalemler (Karma Liste)</option>
-                      <option value="Temizlik Kimyasalları">Temizlik Kimyasalları (20-30 LT, 5 LT)</option>
-                      <option value="Kağıt & Mutfak Grubu">Kağıt & Mutfak Grubu (Z Katlama, Rulo)</option>
-                      <option value="Bardak & Ambalaj">Bardak & Ambalaj (Karton Bardak vb.)</option>
-                      <option value="Çöp Torbaları & Atık">Çöp Torbaları (Battal, Jumbo, Konteyner)</option>
-                      <option value="Temizlik Gereçleri">Temizlik Gereçleri & Presli Arabalar</option>
+                      <option value="Temizlik Kimyasalları">Temizlik Kimyasalları</option>
+                      <option value="Kağıt & Mutfak Grubu">Kağıt & Mutfak Grubu</option>
+                      <option value="Bardak & Ambalaj">Bardak & Ambalaj</option>
+                      <option value="Çöp Torbaları & Atık">Çöp Torbaları & Atık</option>
+                      <option value="Temizlik Gereçleri">Temizlik Gereçleri</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
-                    İhtiyaç Detayları ve Tahmini Adetler
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    İhtiyaç Notunuz veya Tahmini Miktar
                   </label>
                   <textarea
                     rows="3"
-                    placeholder="Örn: 20 Koli Z Katlama Havlu, 10 Bidon 30 LT Yüzey Temizleyici, 50 Koli 7 OZ Karton Bardak..."
+                    placeholder="Talep ettiğiniz ürünleri veya özel isteklerinizi yazabilirsiniz..."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl bg-white border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors resize-none"
                   ></textarea>
                 </div>
 
-                {/* File / Excel Upload Simulation */}
+                {/* Minimal File Upload */}
                 <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
-                    Mevcut Malzeme Listenizi Yükleyin (Excel / PDF / Word)
-                  </label>
                   <div className="flex items-center gap-3">
-                    <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-dashed border-brand-300 bg-white hover:bg-brand-50 cursor-pointer text-xs font-semibold text-brand-700 transition-colors">
-                      <Paperclip className="w-4 h-4 text-brand-600" />
-                      <span>{selectedFileName || 'Dosya Seçin (Maks. 10MB)'}</span>
+                    <label className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer text-xs font-medium text-gray-700 transition-colors">
+                      <Paperclip className="w-3.5 h-3.5 text-gray-500" />
+                      <span>{selectedFileName || 'Excel / PDF Liste Ekle'}</span>
                       <input 
                         type="file" 
                         accept=".xlsx,.xls,.pdf,.docx,.doc" 
@@ -247,9 +194,8 @@ export default function ContactSection() {
                       />
                     </label>
                     {selectedFileName && (
-                      <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        Dosya Eklendi
+                      <span className="text-[11px] text-emerald-600 font-medium">
+                        ✓ Dosya seçildi
                       </span>
                     )}
                   </div>
@@ -258,16 +204,10 @@ export default function ContactSection() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-xs shadow-md shadow-brand-600/25 transition-all"
+                    className="w-full py-3 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white font-medium text-xs shadow-xs transition-colors"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Fiyat Teklifi Talep Et (30 Dk. İade Garantisi)</span>
+                    Teklif Talebini Gönder
                   </button>
-                </div>
-
-                <div className="flex items-center justify-center gap-2 text-[11px] text-textMuted pt-1">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>Bilgileriniz 6698 sayılı KVKK kapsamında gizli tutulmaktadır.</span>
                 </div>
 
               </form>
@@ -275,109 +215,78 @@ export default function ContactSection() {
 
           </div>
 
-          {/* Right Column: Contact Details, Map & WhatsApp */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Right Column: Clean & Direct Contact Info */}
+          <div className="lg:col-span-5 space-y-4 text-left">
             
-            {/* Quick Contact Cards */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-borderSubtle space-y-6 shadow-xs">
-              <h4 className="text-base font-extrabold text-brand-900 border-b border-borderSubtle pb-3">
-                Doğrudan İletişim Kanalları
+            {/* Quick WhatsApp Action Card */}
+            <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-xs">
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                Hızlı WhatsApp Teklifi
               </h4>
-
-              <div className="space-y-4 text-xs">
-                
-                {/* Phone */}
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-brand-50 text-brand-600 flex-shrink-0">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold text-brand-900 block">Kurumsal Satış Hattı</span>
-                    <a href="tel:+902120000000" className="text-textMuted hover:text-brand-600 font-medium">
-                      0850 300 00 00 / 0212 555 00 00
-                    </a>
-                  </div>
-                </div>
-
-                {/* WhatsApp */}
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 flex-shrink-0">
-                    <MessageCircle className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold text-brand-900 block">7/24 WhatsApp Teklif Hattı</span>
-                    <a 
-                      href="https://wa.me/905321112233?text=Merhaba,%20kurumsal%20teklif%20almak%20istiyorum."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-emerald-700 hover:text-emerald-800 font-bold"
-                    >
-                      +90 532 111 22 33
-                    </a>
-                  </div>
-                </div>
-
-                {/* Mail */}
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-brand-50 text-brand-600 flex-shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold text-brand-900 block">Kurumsal E-Posta</span>
-                    <a href="mailto:teklif@burtemis.com.tr" className="text-textMuted hover:text-brand-600 font-medium">
-                      teklif@burtemis.com.tr / info@burtemis.com.tr
-                    </a>
-                  </div>
-                </div>
-
-                {/* Working Hours */}
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-surface-low text-textDark flex-shrink-0">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold text-brand-900 block">Çalışma ve Sevkiyat Saatleri</span>
-                    <p className="text-textMuted font-medium">
-                      Pazartesi - Cuma: 08:30 - 18:30 <br />
-                      Cumartesi: 09:00 - 14:00 (Hızlı Sevkiyat)
-                    </p>
-                  </div>
-                </div>
-
-                {/* Address */}
-                <div className="flex items-start gap-3.5">
-                  <div className="p-2.5 rounded-xl bg-amber-50 text-amber-700 flex-shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold text-brand-900 block">Merkez Depo & Sevkiyat</span>
-                    <p className="text-textMuted font-medium">
-                      Organize Sanayi Bölgesi, Hijyen ve Kimya Toptancılar Sitesi, No: 42, İstanbul & Bursa Lojistik Ağı
-                    </p>
-                  </div>
-                </div>
-
-              </div>
+              <p className="text-xs text-gray-500 mb-4 leading-relaxed font-normal">
+                Mevcut sarf malzeme tüketim listenizi fotoğraf veya dosya olarak doğrudan WhatsApp hattımıza iletebilirsiniz.
+              </p>
+              <a
+                href="https://wa.me/905321112233?text=Merhaba,%20kurumsal%20ürün%20fiyat%20teklifi%20almak%20istiyoruz."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-xs transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp ile Liste Gönder</span>
+              </a>
             </div>
 
-            {/* Interactive Location / Map Card */}
-            <div className="rounded-3xl overflow-hidden border border-borderSubtle bg-surface-low p-4 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-brand-900">Sevkiyat Ağı Kapsamı</span>
-                <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
-                  Marmara Bölgesi Aynı Gün
-                </span>
-              </div>
-              <div className="h-44 rounded-2xl bg-gradient-to-tr from-slate-200 via-brand-50 to-blue-100 flex flex-col items-center justify-center p-4 text-center relative border border-borderSubtle">
-                <div className="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-lg mb-2 animate-bounce">
-                  <MapPin className="w-5 h-5" />
+            {/* Direct Contact Details */}
+            <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-xs space-y-4 text-xs">
+              <h4 className="text-sm font-semibold text-gray-900 pb-2 border-b border-gray-100">
+                İletişim Bilgileri
+              </h4>
+
+              <div className="space-y-3.5">
+                <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="text-gray-400 block font-normal">Müşteri Temsilcisi</span>
+                    <a href="tel:+908503000000" className="font-semibold text-gray-900 hover:text-[#0038e3]">
+                      0850 300 00 00
+                    </a>
+                  </div>
                 </div>
-                <span className="text-xs font-bold text-brand-900">
-                  İstanbul & Bursa Depolarından Doğrudan Sevkiyat
-                </span>
-                <p className="text-[11px] text-textMuted max-w-xs mt-1">
-                  81 ile anlaşmalı ambar ve parsiyel kargo taşımacılığı ile 24-48 saatte teslimat.
-                </p>
+
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="text-gray-400 block font-normal">E-Posta</span>
+                    <a href="mailto:teklif@burtemis.com.tr" className="font-semibold text-gray-900 hover:text-[#0038e3]">
+                      teklif@burtemis.com.tr
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="text-gray-400 block font-normal">Çalışma Saatleri</span>
+                    <span className="font-medium text-gray-700">
+                      Hafta içi 08:30 - 18:30
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="text-gray-400 block font-normal">Lojistik & Merkez</span>
+                    <span className="font-medium text-gray-700">
+                      Organize Sanayi Bölgesi, İstanbul & Bursa Depoları
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-gray-100 text-[11px] text-gray-400">
+                Marmara Bölgesi aynı gün kendi araçlarımızla, Türkiye geneli 81 ile anlaşmalı ambar kargo ile sevkiyat yapılmaktadır.
               </div>
             </div>
 
