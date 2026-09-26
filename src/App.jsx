@@ -7,12 +7,11 @@ import FeaturedProducts from './components/FeaturedProducts';
 import PressSection from './components/PressSection';
 import EditorialFeature from './components/EditorialFeature';
 import ReviewsSection from './components/ReviewsSection';
-import HowItWorks from './components/HowItWorks';
-import StandardsSection from './components/StandardsSection';
+
 import CommunityGrid from './components/CommunityGrid';
 import StartJourneyCTA from './components/StartJourneyCTA';
 import ProductCatalog from './components/ProductCatalog';
-import CorporateSolutions from './components/CorporateSolutions';
+
 import BlogSection from './components/BlogSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -165,15 +164,7 @@ export default function App() {
         {/* 8. Cobalt Blue Testimonials ("100,000+ 5-Star Reviews and Counting") */}
         <ReviewsSection />
 
-        {/* 9. How It Works (Split Screen with Dissolving Tablet into Clear Bottle) */}
-        <HowItWorks 
-          onFaqClick={() => handleNavigate('iletisim')}
-        />
 
-        {/* 10. Standards & Certifications ("A Higher Standard of Clean" - 7 Icons) */}
-        <StandardsSection 
-          onLearnMore={() => handleNavigate('kurumsal')}
-        />
 
         {/* 11. Good Clean Fun (4-Square Instagram Grid) */}
         <CommunityGrid />
@@ -192,10 +183,7 @@ export default function App() {
           quoteItems={quoteItems}
         />
 
-        {/* 14. Corporate / B2B Advantages Section */}
-        <CorporateSolutions
-          onOpenQuoteForm={() => handleNavigate('iletisim')}
-        />
+
 
         {/* 15. Blog & Educational Cleaning Guides */}
         <BlogSection />
