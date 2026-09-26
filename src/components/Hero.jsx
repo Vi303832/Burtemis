@@ -5,12 +5,17 @@ export default function Hero({ onExploreProducts, onOpenQuoteAction }) {
   return (
     <section className="relative w-full h-[520px] sm:h-[620px] lg:h-[700px] overflow-hidden flex items-center justify-center">
       
-      {/* Background Image: Cinematic Coast Wave */}
+      {/* Background Video: Cinematic Hero */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/images/hero_wave.jpg" 
-          alt="Burtemis The Coast We Keep Collection" 
+        <video
           className="w-full h-full object-cover object-center"
+          src="/hero_bg.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
         />
         {/* Subtle Dark Vignette Overlay for Crisp Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40"></div>

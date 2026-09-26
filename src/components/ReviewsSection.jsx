@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function ReviewsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+  const [slideDir, setSlideDir] = useState('next'); // 'next' | 'prev'
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const timerRef = useRef(null);
 
   const reviews = [
     {
@@ -31,87 +36,127 @@ export default function ReviewsSection() {
     }
   ];
 
+  const goTo = (newIndex, dir) => {
+    if (isAnimating) return;
+    setSlideDir(dir);
+    setIsAnimating(true);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setDisplayIndex(newIndex);
+      setActiveIndex(newIndex);
+      setAnimKey(k => k + 1);
+      setIsAnimating(false);
+    }, 320);
+  };
+
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % reviews.length);
+    const next = (activeIndex + 1) % reviews.length;
+    goTo(next, 'next');
   };
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    const prev = (activeIndex - 1 + reviews.length) % reviews.length;
+    goTo(prev, 'prev');
   };
 
-  const current = reviews[activeIndex];
+  const handleDot = (idx) => {
+    if (idx === activeIndex || isAnimating) return;
+    goTo(idx, idx > activeIndex ? 'next' : 'prev');
+  };
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  const current = reviews[displayIndex];
 
   return (
     <section id="yorumlar" className="py-20 sm:py-24 bg-[#0038e3] text-white overflow-hidden relative">
+      <style>{`
+        @keyframes slideInFromRight {
+          from { transform: translateX(80px); opacity: 0; }
+          to   { transform: translateX(0);   opacity: 1; }
+        }
+        @keyframes slideInFromLeft {
+          from { transform: translateX(-80px); opacity: 0; }
+          to   { transform: translateX(0);    opacity: 1; }
+        }
+        .slide-in-right { animation: slideInFromRight 0.32s cubic-bezier(0.4,0,0.2,1) both; }
+        .slide-in-left  { animation: slideInFromLeft  0.32s cubic-bezier(0.4,0,0.2,1) both; }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
+
         {/* Section Heading */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold tracking-tight mb-12">
-          100.000+ 5 Yıldızlı Yorum ve Güven
+          Müşterilerimiz Ne Diyor?
         </h2>
 
-        {/* Carousel Showcase */}
-        <div className="relative max-w-4xl mx-auto flex items-center justify-center">
-          
-          {/* Main Focused Review Card */}
-          <div className="w-full bg-white/10 backdrop-blur-md rounded-3xl border-2 border-white/40 p-8 sm:p-12 shadow-2xl transition-all duration-500">
-            
-            {/* Stars */}
-            <div className="flex items-center justify-center gap-1.5 mb-6">
-              {[...Array(current.stars)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-amber-300 text-amber-300" />
-              ))}
-            </div>
+        {/* Slider */}
+        <div className="relative w-full max-w-6xl mx-auto flex items-center gap-4">
 
-            {/* Quote Body */}
-            <p className="text-lg sm:text-2xl font-light leading-relaxed max-w-2xl mx-auto">
-              “{current.quote}”
-            </p>
+          {/* Prev Button */}
+          <button
+            onClick={handlePrev}
+            className="flex-shrink-0 w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white transition-colors shadow-lg"
+            aria-label="Önceki Yorum"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-            {/* Author */}
-            <div className="mt-8">
-              <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-white">
-                {current.author}
+          {/* Card */}
+          <div className="flex-1 min-w-0 overflow-hidden">
+            <div
+              key={animKey}
+              className={`bg-white/10 backdrop-blur-md rounded-3xl border-2 border-white/40 p-8 sm:p-14 shadow-2xl ${
+                slideDir === 'next' ? 'slide-in-right' : 'slide-in-left'
+              }`}
+            >
+              {/* Stars */}
+              <div className="flex items-center justify-center gap-1.5 mb-6">
+                {[...Array(current.stars)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-amber-300 text-amber-300" />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="text-lg sm:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
+                "{current.quote}"
               </p>
-              <p className="text-xs text-white/70 mt-0.5 font-light">
-                {current.role}
-              </p>
-            </div>
 
+              {/* Author */}
+              <div className="mt-8">
+                <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-white">
+                  {current.author}
+                </p>
+                <p className="text-xs text-white/70 mt-0.5 font-light">
+                  {current.role}
+                </p>
+              </div>
+            </div>
           </div>
+
+          {/* Next Button */}
+          <button
+            onClick={handleNext}
+            className="flex-shrink-0 w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white transition-colors shadow-lg"
+            aria-label="Sonraki Yorum"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
 
         </div>
 
-        {/* Carousel Controls & Pagination Dots */}
-        <div className="flex items-center justify-center gap-3 mt-10">
-          <button 
-            onClick={handlePrev}
-            className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-            aria-label="Önceki Yorum"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-
-          <div className="flex items-center gap-2">
-            {reviews.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  activeIndex === idx ? 'w-8 bg-white' : 'w-2 bg-white/40'
-                }`}
-                aria-label={`Yorum ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          <button 
-            onClick={handleNext}
-            className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-            aria-label="Sonraki Yorum"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
+        {/* Pagination Dots */}
+        <div className="flex items-center justify-center gap-2 mt-8">
+          {reviews.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleDot(idx)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === idx ? 'w-8 bg-white' : 'w-2 bg-white/40'
+              }`}
+              aria-label={`Yorum ${idx + 1}`}
+            />
+          ))}
         </div>
 
       </div>
