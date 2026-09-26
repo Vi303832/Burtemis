@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   X, 
-  Package, 
   Check, 
   MessageCircle, 
   Plus, 
@@ -71,65 +70,53 @@ export default function ProductModal({
 
   return (
     <div 
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-fadeIn"
       onClick={onClose}
     >
-      {/* Modal Box */}
+      {/* Modal Box - Large */}
       <div 
-        className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden text-left my-8"
+        className="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden text-left my-4 sm:my-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors"
           aria-label="Kapat"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Content - 2 Columns (Photo + Info) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[520px]">
           
-          {/* Left Column: Big Clean Product Photo */}
-          <div className="md:col-span-5 bg-[#f8f9fa] p-8 flex flex-col items-center justify-center relative border-b md:border-b-0 md:border-r border-gray-100">
-            <div className="w-full aspect-square max-w-[280px] flex items-center justify-center">
+          {/* Left Column: Large Product Photo */}
+          <div className="md:col-span-6 bg-[#f4f5f7] p-8 sm:p-12 flex flex-col items-center justify-center relative border-b md:border-b-0 md:border-r border-gray-100">
+            <div className="w-full aspect-square max-w-[440px] flex items-center justify-center">
               <img 
                 src={productImage} 
                 alt={product.name} 
-                className="w-full h-full object-cover rounded-2xl shadow-sm"
+                className="w-full h-full object-contain"
               />
-            </div>
-            
-            {/* Quick Spec Pill */}
-            <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-gray-600 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-2xs">
-              <Package className="w-3.5 h-3.5 text-[#0038e3]" />
-              <span>{product.volumeSize}</span>
             </div>
           </div>
 
-          {/* Right Column: Clean Product Information & Actions */}
-          <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+          {/* Right Column: Product Information & Actions */}
+          <div className="md:col-span-6 p-7 sm:p-10 flex flex-col justify-between space-y-6">
             
-            <div className="space-y-3">
+            <div className="space-y-4">
               {/* Category */}
               <span className="text-xs font-bold uppercase tracking-wider text-[#0038e3] block">
                 {product.categoryLabel || 'Endüstriyel Ürün'}
               </span>
 
-              {/* Bold & Trustworthy Title */}
+              {/* Title */}
               <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight leading-snug">
                 {product.name}
               </h2>
 
-              {/* Packaging */}
-              <div className="text-xs font-medium text-gray-600 bg-gray-50 px-3 py-2 rounded-xl border border-gray-150 inline-block">
-                <span className="text-gray-400">Paketleme / Koli:</span>{' '}
-                <span className="text-gray-900 font-semibold">{product.packaging || product.volumeSize}</span>
-              </div>
-
               {/* Short Description */}
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal pt-1">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
                 {product.shortDesc}
               </p>
 

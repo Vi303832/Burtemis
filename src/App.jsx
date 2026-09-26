@@ -7,13 +7,12 @@ import FeaturedProducts from './components/FeaturedProducts';
 import PressSection from './components/PressSection';
 import EditorialFeature from './components/EditorialFeature';
 import ReviewsSection from './components/ReviewsSection';
-
 import CommunityGrid from './components/CommunityGrid';
 import StartJourneyCTA from './components/StartJourneyCTA';
-import ProductCatalog from './components/ProductCatalog';
-
+import CatalogPage from './components/CatalogPage';
+import AboutPage from './components/AboutPage';
+import ContactPage from './components/ContactPage';
 import BlogSection from './components/BlogSection';
-import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
 import QuoteDrawer from './components/QuoteDrawer';
@@ -21,7 +20,9 @@ import CatalogModal from './components/CatalogModal';
 import { MessageCircle, Check, ShoppingBag } from 'lucide-react';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'catalog' | 'about' | 'contact'
   const [currentSection, setCurrentSection] = useState('hero');
+  const [aboutScrollTarget, setAboutScrollTarget] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isQuoteDrawerOpen, setIsQuoteDrawerOpen] = useState(false);
@@ -86,29 +87,57 @@ export default function App() {
     setQuoteItems([]);
   };
 
+  const goHome = () => {
+    setCurrentPage('home');
+    setAboutScrollTarget(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleNavigate = (sectionId) => {
-    setCurrentSection(sectionId);
-    const elem = document.getElementById(sectionId);
-    if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth' });
-    } else {
+    if (sectionId === 'urunler') {
+      setCurrentPage('catalog');
+      setAboutScrollTarget(null);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
+    if (sectionId === 'kurumsal' || sectionId === 'standartlar') {
+      setCurrentPage('about');
+      setAboutScrollTarget(sectionId === 'standartlar' ? 'standartlar' : null);
+      setCurrentSection('kurumsal');
+      return;
+    }
+    if (sectionId === 'iletisim') {
+      setCurrentPage('contact');
+      setAboutScrollTarget(null);
+      setCurrentSection('iletisim');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    setCurrentPage('home');
+    setAboutScrollTarget(null);
+    setCurrentSection(sectionId);
+    setTimeout(() => {
+      const elem = document.getElementById(sectionId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 50);
   };
 
   const handleSelectCategory = (catId) => {
     setActiveCategory(catId);
-    const catalogElem = document.getElementById('urunler');
-    if (catalogElem) {
-      catalogElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    setCurrentPage('catalog');
+    setAboutScrollTarget(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const totalQuoteCount = quoteItems.reduce((acc, curr) => acc + (curr.quantity || 1), 0);
 
-  return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0d1829] font-sans antialiased selection:bg-[#bad5ff] selection:text-[#0025a6]">
-      
+  // ── Shared overlays (shown on both pages) ──────────────────────────────
+  const sharedOverlays = (
+    <>
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-5 py-3 rounded-full bg-[#0c1a3a] text-white text-xs font-bold shadow-2xl border border-blue-900 animate-slideUp">
@@ -116,88 +145,6 @@ export default function App() {
           <span>{toastMessage}</span>
         </div>
       )}
-
-      {/* 1. Header with Announcement Bar & Navigations */}
-      <Header
-        quoteItemsCount={totalQuoteCount}
-        onOpenQuoteDrawer={() => setIsQuoteDrawerOpen(true)}
-        onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
-        currentSection={currentSection}
-        onNavigate={handleNavigate}
-        onSelectCategory={handleSelectCategory}
-      />
-
-      {/* Main Flow Matching Blueland 1:1 */}
-      <main className="flex-1">
-        
-        {/* 2. Hero Section: Cinematic Ocean Coast */}
-        <section id="hero">
-          <Hero
-            onExploreProducts={() => handleNavigate('urunler')}
-            onOpenQuoteAction={() => setIsQuoteDrawerOpen(true)}
-          />
-        </section>
-
-        {/* 3. Shop by Category Showcase */}
-        <CategoryShowcase 
-          onSelectCategory={handleSelectCategory}
-        />
-
-        {/* 4. 4,000,000+ Homes Have Made the Switch (Key Metrics & Pillars) */}
-        <ValueProps />
-
-        {/* 5. Featured Products (Carousel of Best Sellers) */}
-        <FeaturedProducts 
-          onAddToQuote={handleAddToQuote}
-          onViewDetail={(prod) => setSelectedProduct(prod)}
-          onShopAll={() => handleNavigate('urunler')}
-        />
-
-        {/* 6. Press & Media Bar (Fast Company, NYT, Vogue, Forbes, Bloomberg) */}
-        <PressSection />
-
-        {/* 7. Editorial Lifestyle Banner ("A Clean The Whole Planet Can Feel") */}
-        <EditorialFeature 
-          onLearnMore={() => handleNavigate('kurumsal')}
-        />
-
-        {/* 8. Cobalt Blue Testimonials ("100,000+ 5-Star Reviews and Counting") */}
-        <ReviewsSection />
-
-
-
-        {/* 11. Good Clean Fun (4-Square Instagram Grid) */}
-        <CommunityGrid />
-
-        {/* 12. Call to Action Banner ("Start Your Journey") */}
-        <StartJourneyCTA 
-          onGetStarted={() => handleNavigate('urunler')}
-        />
-
-        {/* 13. Comprehensive Product Catalog & Filter System */}
-        <ProductCatalog
-          activeCategory={activeCategory}
-          onSelectCategory={setActiveCategory}
-          onAddToQuote={handleAddToQuote}
-          onViewProductDetail={(prod) => setSelectedProduct(prod)}
-          quoteItems={quoteItems}
-        />
-
-
-
-        {/* 15. Blog & Educational Cleaning Guides */}
-        <BlogSection />
-
-        {/* 16. Contact & Quick Quote Form */}
-        <ContactSection />
-
-      </main>
-
-      {/* 17. Deep Cobalt Blue Footer */}
-      <Footer
-        onNavigate={handleNavigate}
-        onSelectCategory={handleSelectCategory}
-      />
 
       {/* Product Detail Modal */}
       {selectedProduct && (
@@ -226,7 +173,6 @@ export default function App() {
 
       {/* Floating Action Buttons: WhatsApp & Quick Cart */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
-        {/* Floating Cart Trigger with badge */}
         <button
           onClick={() => setIsQuoteDrawerOpen(true)}
           className="relative w-13 h-13 p-3.5 rounded-full bg-[#0038e3] hover:bg-[#002bb8] text-white shadow-xl shadow-blue-600/30 flex items-center justify-center transition-all hover:scale-105 active:scale-95 group"
@@ -239,8 +185,6 @@ export default function App() {
             </span>
           )}
         </button>
-
-        {/* Floating WhatsApp Button */}
         <a
           href="https://wa.me/905321112233?text=Merhaba%20Burtemis,%20ürünleriniz%20ve%20kurumsal%20fiyatlar%20hakkında%20bilgi%20almak%20istiyorum."
           target="_blank"
@@ -251,7 +195,126 @@ export default function App() {
           <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
         </a>
       </div>
+    </>
+  );
 
+  // ── Catalog Page ──────────────────────────────────────────────────────
+  if (currentPage === 'catalog') {
+    return (
+      <>
+        <CatalogPage
+          activeCategory={activeCategory}
+          onSelectCategory={setActiveCategory}
+          onAddToQuote={handleAddToQuote}
+          onViewProductDetail={(prod) => setSelectedProduct(prod)}
+          quoteItems={quoteItems}
+          quoteItemsCount={totalQuoteCount}
+          onOpenQuoteDrawer={() => setIsQuoteDrawerOpen(true)}
+          onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
+          onNavigate={handleNavigate}
+          onGoHome={goHome}
+        />
+        {sharedOverlays}
+      </>
+    );
+  }
+
+  // ── About / Hakkımızda Page ───────────────────────────────────────────
+  if (currentPage === 'about') {
+    return (
+      <>
+        <AboutPage
+          quoteItemsCount={totalQuoteCount}
+          onOpenQuoteDrawer={() => setIsQuoteDrawerOpen(true)}
+          onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
+          onNavigate={handleNavigate}
+          onSelectCategory={handleSelectCategory}
+          onGoHome={goHome}
+          scrollToSection={aboutScrollTarget}
+        />
+        {sharedOverlays}
+      </>
+    );
+  }
+
+  // ── Contact / İletişim Page ───────────────────────────────────────────
+  if (currentPage === 'contact') {
+    return (
+      <>
+        <ContactPage
+          quoteItemsCount={totalQuoteCount}
+          onOpenQuoteDrawer={() => setIsQuoteDrawerOpen(true)}
+          onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
+          onNavigate={handleNavigate}
+          onSelectCategory={handleSelectCategory}
+          onGoHome={goHome}
+        />
+        {sharedOverlays}
+      </>
+    );
+  }
+
+  // ── Home Page ─────────────────────────────────────────────────────────
+  return (
+    <div className="min-h-screen flex flex-col bg-white text-[#0d1829] font-sans antialiased selection:bg-[#bad5ff] selection:text-[#0025a6]">
+
+      {/* 1. Header */}
+      <Header
+        quoteItemsCount={totalQuoteCount}
+        onOpenQuoteDrawer={() => setIsQuoteDrawerOpen(true)}
+        onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
+        currentSection={currentSection}
+        onNavigate={handleNavigate}
+        onSelectCategory={handleSelectCategory}
+      />
+
+      <main className="flex-1">
+        {/* 2. Hero */}
+        <section id="hero">
+          <Hero
+            onExploreProducts={() => handleNavigate('urunler')}
+            onOpenQuoteAction={() => setIsQuoteDrawerOpen(true)}
+          />
+        </section>
+
+        {/* 3. Category Showcase */}
+        <CategoryShowcase onSelectCategory={handleSelectCategory} />
+
+        {/* 4. Value Props */}
+        <ValueProps />
+
+        {/* 5. Featured Products */}
+        <FeaturedProducts
+          onAddToQuote={handleAddToQuote}
+          onViewDetail={(prod) => setSelectedProduct(prod)}
+          onShopAll={() => handleNavigate('urunler')}
+        />
+
+        {/* 6. Press */}
+        <PressSection />
+
+        {/* 7. Editorial */}
+        <EditorialFeature onLearnMore={() => handleNavigate('kurumsal')} />
+
+        {/* 8. Reviews */}
+        <ReviewsSection />
+
+        {/* 9. Community Grid */}
+        <CommunityGrid />
+
+        {/* 10. CTA */}
+        <StartJourneyCTA onGetStarted={() => handleNavigate('urunler')} />
+
+        {/* 11. Blog */}
+        <BlogSection />
+      </main>
+
+      <Footer
+        onNavigate={handleNavigate}
+        onSelectCategory={handleSelectCategory}
+      />
+
+      {sharedOverlays}
     </div>
   );
 }

@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { 
   ShoppingCart, 
-  Search, 
-  User, 
   Menu, 
-  X, 
-  Sparkles,
-  ArrowRight
+  X
 } from 'lucide-react';
 
 export default function Header({ 
@@ -18,29 +14,24 @@ export default function Header({
   onSelectCategory
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   const subLinksLeft = [
+    { label: 'Ürün Kataloğu', target: 'urunler' },
     { label: 'Hakkımızda', target: 'kurumsal' },
-    { label: 'Yorumlar', target: 'yorumlar' },
-    { label: 'Etkimiz', target: 'standartlar' }
+    { label: 'Yorumlar', target: 'yorumlar' }
   ];
 
   const subLinksRight = [
-    { label: 'Sipariş Takibi', target: 'iletisim' },
-    { label: 'Kurumsal Teklif', target: 'iletisim' }
+    { label: 'Kurumsal Fiyat Teklifi', target: 'iletisim' }
   ];
 
   const categoriesNav = [
     { id: 'all', label: 'Tüm Ürünler' },
-    { id: 'kimyasal', label: 'Konsantre Temizlik' },
-    { id: 'kagit', label: 'Kağıt & Havlu' },
-    { id: 'bulasik', label: 'Bulaşık & Mutfak' },
-    { id: 'sabun', label: 'Köpük El Sabunu' },
+    { id: 'kimyasal', label: 'Temizlik Kimyasalları' },
+    { id: 'kagit', label: 'Kağıt & Mutfak' },
+    { id: 'ambalaj', label: 'Bardak & Ambalaj' },
     { id: 'cop-torbasi', label: 'Çöp Torbaları' },
-    { id: 'gerec', label: 'Dozaj & Aparat' },
-    { id: 'setler', label: 'Başlangıç Setleri' },
-    { id: 'indirim', label: 'Kampanyalar', badge: 'Yeni' }
+    { id: 'gerec', label: 'Temizlik Gereçleri' }
   ];
 
   const handleNavClick = (target) => {
@@ -60,7 +51,7 @@ export default function Header({
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-xs font-sans">
       
-      {/* 1. Announcement Bar (Iconic Electric Cobalt Blue) */}
+      {/* 1. Announcement Bar */}
       <div className="bg-[#0038e3] text-white text-[12px] sm:text-[13px] font-semibold tracking-wide py-2 px-4 text-center">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
           <span>500 TL Üzeri Siparişlerde Ücretsiz Kargo</span>
@@ -69,13 +60,13 @@ export default function Header({
         </div>
       </div>
 
-      {/* 2. Top Header Utility Bar (Links, Logo, Actions) */}
+      {/* 2. Top Header Utility Bar */}
       <div className="border-b border-gray-100/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
+          <div className="relative flex items-center justify-between h-16 sm:h-20">
             
             {/* Left Utility Links (Desktop) */}
-            <div className="hidden lg:flex items-center gap-6 text-[13px] font-medium text-gray-700">
+            <div className="hidden lg:flex items-center gap-6 text-[13px] font-medium text-gray-700 z-10">
               {subLinksLeft.map((item, idx) => (
                 <button
                   key={idx}
@@ -88,7 +79,7 @@ export default function Header({
             </div>
 
             {/* Mobile Hamburger Toggle */}
-            <div className="lg:hidden flex items-center">
+            <div className="lg:hidden flex items-center z-10">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 text-gray-800 hover:text-[#0038e3]"
@@ -98,23 +89,18 @@ export default function Header({
               </button>
             </div>
 
-            {/* Brand Logo - Bold Modern Electric Blue Typography */}
+            {/* Brand Logo - Centered */}
             <div 
               onClick={() => handleNavClick('hero')} 
-              className="flex items-center gap-2 cursor-pointer select-none py-1"
+              className="absolute left-1/2 -translate-x-1/2 flex items-center cursor-pointer select-none py-1"
             >
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl font-black tracking-[0.2em] text-[#0038e3] uppercase transition-transform hover:scale-[1.02]">
-                  BURTEMİS
-                </span>
-                <span className="text-[9px] font-bold tracking-[0.3em] text-gray-400 uppercase -mt-0.5">
-                  ECO-CLEAN SOLUTIONS
-                </span>
-              </div>
+              <span className="text-2xl sm:text-3xl font-black tracking-[0.2em] text-[#0038e3] uppercase transition-transform hover:scale-[1.02]">
+                BURTEMİS
+              </span>
             </div>
 
             {/* Right Utility Actions */}
-            <div className="flex items-center gap-4 sm:gap-6 text-[13px] font-medium text-gray-700">
+            <div className="flex items-center gap-4 sm:gap-6 text-[13px] font-medium text-gray-700 z-10 ml-auto">
               <div className="hidden md:flex items-center gap-6">
                 {subLinksRight.map((item, idx) => (
                   <button
@@ -126,24 +112,6 @@ export default function Header({
                   </button>
                 ))}
               </div>
-
-              {/* Search Toggle */}
-              <button 
-                onClick={() => handleNavClick('urunler')}
-                className="p-2 text-gray-700 hover:text-[#0038e3] transition-colors"
-                title="Ürün Ara"
-              >
-                <Search className="w-5 h-5" />
-              </button>
-
-              {/* Account / B2B Login button */}
-              <button 
-                onClick={() => handleNavClick('kurumsal')}
-                className="p-2 text-gray-700 hover:text-[#0038e3] transition-colors hidden sm:block"
-                title="Kurumsal Giriş"
-              >
-                <User className="w-5 h-5" />
-              </button>
 
               {/* Cart / Quote Basket Trigger */}
               <button
@@ -164,7 +132,7 @@ export default function Header({
         </div>
       </div>
 
-      {/* 3. Main Navigation Bar (Clean Categories Row - Desktop) */}
+      {/* 3. Main Navigation Bar (Categories - Desktop) */}
       <div className="hidden lg:block bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-center gap-7 py-3 text-[13px] font-semibold text-gray-800 tracking-wide">
@@ -186,6 +154,25 @@ export default function Header({
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-gray-200 px-6 py-5 space-y-4 shadow-xl animate-fadeIn">
           <div className="space-y-2 border-b border-gray-100 pb-4">
+            <p className="text-xs font-bold uppercase tracking-wider text-gray-400">Menü</p>
+            {subLinksLeft.map((item, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleNavClick(item.target)}
+                className="block w-full text-left py-2 text-sm font-medium text-gray-800 hover:text-[#0038e3]"
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              onClick={() => handleNavClick('iletisim')}
+              className="block w-full text-left py-2 text-sm font-medium text-gray-800 hover:text-[#0038e3]"
+            >
+              Kurumsal Fiyat Teklifi
+            </button>
+          </div>
+
+          <div className="space-y-2 pt-2">
             <p className="text-xs font-bold uppercase tracking-wider text-gray-400">Kategoriler</p>
             {categoriesNav.map((cat) => (
               <button
@@ -196,34 +183,6 @@ export default function Header({
                 {cat.label}
               </button>
             ))}
-          </div>
-
-          <div className="space-y-2 pt-2">
-            <p className="text-xs font-bold uppercase tracking-wider text-gray-400">Hızlı Bağlantılar</p>
-            <button
-              onClick={() => handleNavClick('kurumsal')}
-              className="block w-full text-left py-1.5 text-sm text-gray-600 hover:text-[#0038e3]"
-            >
-              Kurumsal & B2B Çözümler
-            </button>
-            <button
-              onClick={() => handleNavClick('yorumlar')}
-              className="block w-full text-left py-1.5 text-sm text-gray-600 hover:text-[#0038e3]"
-            >
-              Müşteri Değerlendirmeleri
-            </button>
-            <button
-              onClick={() => handleNavClick('standartlar')}
-              className="block w-full text-left py-1.5 text-sm text-gray-600 hover:text-[#0038e3]"
-            >
-              Kalite & Sürdürülebilirlik Standartları
-            </button>
-            <button
-              onClick={() => handleNavClick('iletisim')}
-              className="block w-full text-left py-1.5 text-sm text-gray-600 hover:text-[#0038e3]"
-            >
-              İletişim & Teklif Formu
-            </button>
           </div>
         </div>
       )}

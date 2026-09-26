@@ -1,52 +1,37 @@
 import React, { useState } from 'react';
-import { 
-  X, 
-  Trash2, 
-  Plus, 
-  Minus, 
-  Send, 
-  MessageCircle, 
-  CheckCircle2, 
-  ShoppingCart, 
-  Building2, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Calendar, 
-  FileText,
-  ShieldCheck,
-  Sparkles,
-  ArrowRight
+import {
+  X,
+  Trash2,
+  Plus,
+  Minus,
+  Send,
+  MessageCircle,
+  CheckCircle2,
+  ShoppingCart,
+  ArrowRight,
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 
-export default function QuoteDrawer({ 
-  isOpen, 
-  onClose, 
-  items = [], 
-  onUpdateQuantity, 
+export default function QuoteDrawer({
+  isOpen,
+  onClose,
+  items = [],
+  onUpdateQuantity,
   onRemoveItem,
-  onClearCart
+  onClearCart,
 }) {
-  const [activeStep, setActiveStep] = useState('list'); // 'list' or 'form' or 'success'
-  const [quoteReference, setQuoteReference] = useState('');
-  
-  // Form State
+  const [activeStep, setActiveStep] = useState('list'); // 'list' | 'form' | 'success'
   const [formData, setFormData] = useState({
     companyName: '',
     fullName: '',
     phone: '',
     email: '',
-    city: 'İstanbul',
-    supplyFrequency: 'Aylık Düzenli Tedarik',
-    notes: ''
+    notes: '',
   });
 
   if (!isOpen) return null;
 
   const totalItemCount = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
-  // Generate WhatsApp Message with all items formatted
   const handleSendViaWhatsApp = () => {
     if (items.length === 0) return;
 
@@ -54,23 +39,20 @@ export default function QuoteDrawer({
     if (formData.companyName) {
       message += `*Firma:* ${formData.companyName}\n`;
       message += `*Yetkili:* ${formData.fullName}\n`;
-      message += `*Telefon:* ${formData.phone}\n`;
-      message += `*Şehir:* ${formData.city}\n\n`;
+      message += `*Telefon:* ${formData.phone}\n\n`;
     }
     message += `*Talep Edilen Ürün Listesi:*\n`;
 
     items.forEach((item, index) => {
-      message += `${index + 1}. *${item.name}* (${item.volumeSize}) - *${item.quantity || 1} Adet/Koli*\n`;
-      message += `   _Standart: ${item.packaging}_\n`;
+      message += `${index + 1}. *${item.name}* (${item.volumeSize}) — ${item.quantity || 1} Adet/Koli\n`;
     });
 
     if (formData.notes) {
-      message += `\n*Özel Not:* ${formData.notes}\n`;
+      message += `\n*Not:* ${formData.notes}\n`;
     }
     message += `\nLütfen kurumsal toptan fiyat teklifinizi iletir misiniz?`;
 
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/905321112233?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/905321112233?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handleFormSubmit = (e) => {
@@ -79,190 +61,150 @@ export default function QuoteDrawer({
       alert('Lütfen zorunlu alanları (Firma, Ad Soyad, Telefon) eksiksiz doldurunuz.');
       return;
     }
-
-    const refNumber = 'BRT-TK-' + Math.floor(100000 + Math.random() * 900000);
-    setQuoteReference(refNumber);
     setActiveStep('success');
-
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.5 }
-    });
   };
 
   const resetAndClose = () => {
     setActiveStep('list');
+    setFormData({ companyName: '', fullName: '', phone: '', email: '', notes: '' });
     onClearCart();
     onClose();
   };
 
+  const inputClass =
+    'w-full px-3.5 py-2.5 text-xs rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:border-[#0038e3] focus:outline-none transition-colors';
+
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-brand-900/60 backdrop-blur-xs flex justify-end">
-      
-      {/* Backdrop click to close */}
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black/40 backdrop-blur-[2px] flex justify-end">
       <div className="flex-1" onClick={onClose} />
 
-      {/* Slide-out Drawer Box */}
-      <div className="w-full max-w-lg bg-white h-full shadow-2xl flex flex-col justify-between overflow-hidden animate-slideLeft text-left border-l border-borderSubtle">
-        
-        {/* Drawer Header */}
-        <div className="p-5 border-b border-borderSubtle/80 flex items-center justify-between bg-surface-lowest">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-brand-50 border border-brand-200 text-brand-600">
-              <ShoppingCart className="w-5 h-5" />
-            </div>
-            <div>
-              <h2 className="text-base font-extrabold text-brand-900">
-                Teklif Sepetim
-              </h2>
-              <p className="text-xs text-textMuted">
-                {items.length > 0 
-                  ? `${items.length} Kalem (${totalItemCount} Adet/Koli) seçildi`
-                  : 'Listenizde henüz ürün bulunmuyor'}
-              </p>
-            </div>
+      <div className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col overflow-hidden animate-slideLeft text-left border-l border-gray-100">
+        {/* Header */}
+        <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-bold text-gray-900">Teklif Sepetim</h2>
+            <p className="text-xs text-gray-500 mt-0.5">
+              {items.length > 0
+                ? `${items.length} ürün · ${totalItemCount} adet/koli`
+                : 'Henüz ürün eklenmedi'}
+            </p>
           </div>
-
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-textMuted hover:text-textDark hover:bg-surface-low transition-colors"
+            className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-50 transition-colors"
             aria-label="Kapat"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Drawer Body */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-4">
-          
-          {/* STEP 1: Product List */}
+        {/* Body */}
+        <div className="flex-1 overflow-y-auto px-5 py-4">
           {activeStep === 'list' && (
             <>
               {items.length === 0 ? (
-                <div className="text-center py-20 px-4 space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-surface-low mx-auto flex items-center justify-center text-textMuted/40">
-                    <ShoppingCart className="w-8 h-8" />
+                <div className="text-center py-16 px-4 space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-gray-50 mx-auto flex items-center justify-center text-gray-300">
+                    <ShoppingCart className="w-6 h-6" />
                   </div>
-                  <h3 className="text-sm font-bold text-brand-900">Teklif Listeniz Boş</h3>
-                  <p className="text-xs text-textMuted max-w-xs mx-auto">
-                    Katalogdan ilgilendiğiniz temizlik kimyasalı, kağıt havlu veya ambalaj ürünlerini "Teklife Ekle" butonu ile ekleyin.
+                  <h3 className="text-sm font-semibold text-gray-900">Sepetiniz boş</h3>
+                  <p className="text-xs text-gray-500 max-w-xs mx-auto">
+                    Katalogdan ürünleri &ldquo;Teklife Ekle&rdquo; ile ekleyin.
                   </p>
                   <button
                     onClick={onClose}
-                    className="px-5 py-2.5 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition-colors"
+                    className="mt-2 px-5 py-2.5 rounded-xl bg-[#0038e3] text-white text-xs font-semibold hover:bg-[#002bb8] transition-colors"
                   >
                     Ürünleri İncele
                   </button>
                 </div>
               ) : (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between text-xs text-textMuted pb-1">
-                    <span>Eklenen Ürünler</span>
+                  <div className="flex items-center justify-end">
                     <button
                       onClick={onClearCart}
-                      className="text-red-600 hover:text-red-700 font-medium flex items-center gap-1"
+                      className="text-xs text-gray-400 hover:text-red-600 font-medium flex items-center gap-1 transition-colors"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
-                      <span>Listeyi Temizle</span>
+                      Temizle
                     </button>
                   </div>
 
                   {items.map((item) => (
                     <div
                       key={item.id}
-                      className="p-3.5 rounded-2xl bg-surface-low border border-borderSubtle flex items-start justify-between gap-3"
+                      className="py-3 border-b border-gray-100 last:border-0 flex items-start justify-between gap-3"
                     >
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-[10px] font-bold text-brand-700 bg-white px-2 py-0.5 rounded border border-brand-200">
-                            {item.volumeSize}
-                          </span>
-                          <span className="text-[10px] text-textMuted font-medium truncate">
-                            {item.categoryLabel}
-                          </span>
-                        </div>
-                        <h4 className="text-xs font-bold text-brand-900 leading-snug">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-xs font-semibold text-gray-900 leading-snug">
                           {item.name}
                         </h4>
-                        <p className="text-[11px] text-textMuted mt-0.5">
-                          {item.packaging}
+                        <p className="text-[11px] text-gray-400 mt-0.5">
+                          {item.volumeSize}
+                          {item.packaging ? ` · ${item.packaging}` : ''}
                         </p>
 
-                        {/* Stepper */}
-                        <div className="mt-3 flex items-center gap-2">
-                          <span className="text-[11px] text-textMuted font-medium">Adet:</span>
-                          <div className="flex items-center border border-borderSubtle rounded-lg bg-white">
+                        <div className="mt-2.5 flex items-center gap-2">
+                          <div className="flex items-center border border-gray-200 rounded-lg">
                             <button
-                              onClick={() => onUpdateQuantity(item.id, Math.max(1, (item.quantity || 1) - 1))}
-                              className="p-1 hover:bg-surface-low text-textDark"
+                              onClick={() =>
+                                onUpdateQuantity(item.id, Math.max(1, (item.quantity || 1) - 1))
+                              }
+                              className="p-1.5 hover:bg-gray-50 text-gray-600"
                               title="Azalt"
                             >
                               <Minus className="w-3.5 h-3.5" />
                             </button>
-                            <span className="w-8 text-center text-xs font-bold text-brand-900">
+                            <span className="w-7 text-center text-xs font-semibold text-gray-900">
                               {item.quantity || 1}
                             </span>
                             <button
                               onClick={() => onUpdateQuantity(item.id, (item.quantity || 1) + 1)}
-                              className="p-1 hover:bg-surface-low text-textDark"
+                              className="p-1.5 hover:bg-gray-50 text-gray-600"
                               title="Artır"
                             >
                               <Plus className="w-3.5 h-3.5" />
                             </button>
                           </div>
-                          <span className="text-[11px] text-textMuted">Koli / Birim</span>
                         </div>
                       </div>
 
-                      {/* Remove Button */}
                       <button
                         onClick={() => onRemoveItem(item.id)}
-                        className="text-textMuted hover:text-red-600 p-1 transition-colors"
-                        title="Ürünü Çıkar"
+                        className="text-gray-300 hover:text-red-500 p-1 transition-colors"
+                        title="Çıkar"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   ))}
-
-                  {/* 30-min quote badge */}
-                  <div className="p-3 rounded-xl bg-brand-50 border border-brand-200 text-brand-800 text-xs flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-brand-600 flex-shrink-0" />
-                    <span>30 dakika içinde firmanıza özel resmi fiyat teklifi hazırlanır.</span>
-                  </div>
                 </div>
               )}
             </>
           )}
 
-          {/* STEP 2: Quote Submission Form */}
           {activeStep === 'form' && (
             <form onSubmit={handleFormSubmit} className="space-y-4">
-              <div className="p-3 bg-brand-50 rounded-xl border border-brand-200 text-xs text-brand-900">
-                <span className="font-bold block">Seçilen {items.length} Kalem Ürün İçin Teklif</span>
-                <span className="text-textMuted text-[11px]">Lütfen iletişim bilgilerinizi giriniz. Teklif formunuz satış uzmanımıza anında iletilecektir.</span>
-              </div>
+              <p className="text-xs text-gray-500">
+                {items.length} ürün için iletişim bilgilerinizi girin.
+              </p>
 
               <div>
-                <label className="block text-xs font-bold text-textDark mb-1">
-                  Firma / Kurum Ünvanı *
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Firma / Kurum *
                 </label>
-                <div className="relative">
-                  <Building2 className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    required
-                    placeholder="Örn: ABC Lojistik A.Ş."
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                  />
-                </div>
+                <input
+                  type="text"
+                  required
+                  placeholder="Örn: ABC Lojistik A.Ş."
+                  value={formData.companyName}
+                  onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                  className={inputClass}
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-textDark mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-1">
                   Yetkili Adı Soyadı *
                 </label>
                 <input
@@ -271,178 +213,119 @@ export default function QuoteDrawer({
                   placeholder="Ad Soyad"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  className={inputClass}
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
-                    Telefon Numarası *
-                  </label>
-                  <div className="relative">
-                    <Phone className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="tel"
-                      required
-                      placeholder="05XX XXX XX XX"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
-                    E-Posta Adresi
-                  </label>
-                  <div className="relative">
-                    <Mail className="w-4 h-4 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="email"
-                      placeholder="ad@firma.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
-                    Teslimat Şehri
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    Telefon *
                   </label>
                   <input
-                    type="text"
-                    placeholder="İstanbul, Bursa..."
-                    value={formData.city}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
+                    type="tel"
+                    required
+                    placeholder="05XX XXX XX XX"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className={inputClass}
                   />
                 </div>
-
                 <div>
-                  <label className="block text-xs font-bold text-textDark mb-1">
-                    Tedarik Periyodu
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    E-Posta
                   </label>
-                  <select
-                    value={formData.supplyFrequency}
-                    onChange={(e) => setFormData({ ...formData, supplyFrequency: e.target.value })}
-                    className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                  >
-                    <option value="Aylık Düzenli Tedarik">Aylık Düzenli Tedarik</option>
-                    <option value="Tek Seferlik Toplu Alım">Tek Seferlik Toplu Alım</option>
-                    <option value="3 Aylık Dönemsel">3 Aylık Dönemsel</option>
-                    <option value="Yıllık Sözleşmeli İhale">Yıllık Sözleşmeli İhale</option>
-                  </select>
+                  <input
+                    type="email"
+                    placeholder="ad@firma.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className={inputClass}
+                  />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-textDark mb-1">
-                  Ek Açıklamalar & Numune İsteği
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Not (isteğe bağlı)
                 </label>
                 <textarea
-                  rows="3"
-                  placeholder="Varsa özel paketleme, teslimat şartı veya numune isteğinizi yazınız..."
+                  rows="2"
+                  placeholder="Özel istek veya teslimat notu..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-3 py-2 text-xs rounded-xl bg-surface-low border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-brand-500"
-                ></textarea>
+                  className={`${inputClass} resize-none`}
+                />
               </div>
 
-              <div className="flex items-center gap-2 pt-2">
+              <div className="flex items-center gap-2 pt-1">
                 <button
                   type="button"
                   onClick={() => setActiveStep('list')}
-                  className="px-4 py-2.5 rounded-xl border border-borderSubtle text-xs font-bold text-textDark hover:bg-surface-low"
+                  className="px-4 py-2.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:bg-gray-50"
                 >
-                  Geri Dön
+                  Geri
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow-md shadow-brand-600/20"
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white text-xs font-semibold transition-colors"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Resmi Teklif Talep Et</span>
+                  <Send className="w-3.5 h-3.5" />
+                  Teklif Talep Et
                 </button>
               </div>
             </form>
           )}
 
-          {/* STEP 3: Success Confirmation */}
           {activeStep === 'success' && (
-            <div className="py-12 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200">
-                <CheckCircle2 className="w-8 h-8" />
+            <div className="py-12 text-center space-y-3">
+              <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-extrabold text-brand-900">
-                Teklif Talebiniz Başarıyla Alındı!
-              </h3>
-              <div className="p-3 bg-surface-low rounded-xl border border-borderSubtle inline-block text-xs">
-                <span className="text-textMuted block">Teklif Takip Numaranız:</span>
-                <span className="font-mono font-bold text-brand-700 text-sm">{quoteReference}</span>
-              </div>
-              <p className="text-xs text-textMuted max-w-sm mx-auto leading-relaxed">
-                Satış uzmanımız <span className="font-bold text-textDark">{formData.companyName}</span> için hazırlanan resmi fiyat teklifini ve iskonto oranlarını 30 dakika içerisinde <span className="font-bold text-textDark">{formData.phone}</span> numaralı telefonunuza iletecektir.
+              <h3 className="text-base font-bold text-gray-900">Talebiniz alındı</h3>
+              <p className="text-xs text-gray-500 max-w-xs mx-auto leading-relaxed">
+                {formData.companyName} için teklifiniz en kısa sürede{' '}
+                {formData.phone} numarasına iletilecektir.
               </p>
-              
               <div className="pt-4 flex flex-col gap-2">
                 <button
                   onClick={handleSendViaWhatsApp}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Bu Listeyi WhatsApp Satış Hattına da Gönder</span>
+                  WhatsApp&apos;tan da Gönder
                 </button>
-
                 <button
                   onClick={resetAndClose}
-                  className="w-full py-2.5 rounded-xl border border-borderSubtle text-textDark font-semibold text-xs hover:bg-surface-low"
+                  className="w-full py-2.5 rounded-xl border border-gray-200 text-gray-700 font-semibold text-xs hover:bg-gray-50"
                 >
-                  Kapat ve Alışverişe Devam Et
+                  Kapat
                 </button>
               </div>
             </div>
           )}
-
         </div>
 
-        {/* Drawer Footer with Actions */}
+        {/* Footer */}
         {activeStep === 'list' && items.length > 0 && (
-          <div className="p-5 border-t border-borderSubtle bg-white space-y-2.5">
-            {/* Primary Action: Go to Form */}
+          <div className="p-5 border-t border-gray-100 space-y-2">
             <button
               onClick={() => setActiveStep('form')}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-xs shadow-md shadow-brand-600/25 transition-all"
-              id="teklif-talep-et-btn"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white font-semibold text-xs transition-colors"
             >
-              <span>Teklif Talep Formunu Doldur</span>
+              Teklif Formuna Geç
               <ArrowRight className="w-4 h-4" />
             </button>
-
-            {/* Quick WhatsApp Share Action */}
             <button
               onClick={handleSendViaWhatsApp}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs transition-colors"
-              title="Sepetteki tüm ürünleri WhatsApp mesajı olarak anında gönder"
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-[#25D366] hover:bg-emerald-50 font-semibold text-xs transition-colors"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-600" />
-              <span>Tüm Listeyi WhatsApp'tan Tek Tıkla Gönder</span>
+              <MessageCircle className="w-4 h-4" />
+              WhatsApp ile Gönder
             </button>
-
-            <div className="text-[11px] text-center text-textMuted pt-1 flex items-center justify-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>30 dakika içinde garantili teklif geri dönüşü</span>
-            </div>
           </div>
         )}
-
       </div>
-
     </div>
   );
 }

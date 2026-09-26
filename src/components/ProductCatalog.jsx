@@ -94,14 +94,14 @@ export default function ProductCatalog({
   };
 
   return (
-    <section id="urunler" className="py-16 sm:py-20 bg-white min-h-screen">
+    <section id="urunler" className="py-10 sm:py-14 bg-white flex-1">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header - Clean & Simple, no pill badges */}
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             Ürün Kataloğu
-          </h2>
+          </h1>
           <p className="text-sm text-gray-500 mt-2 font-normal">
             Tüm endüstriyel hijyen, kağıt ve sarf malzeme çözümlerimizi inceleyebilir, listenize ekleyerek toptan fiyat teklifi alabilirsiniz.
           </p>
@@ -168,7 +168,7 @@ export default function ProductCatalog({
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 text-left">
             {filteredProducts.map((product) => {
               const inQuote = isItemInQuote(product.id);
               const isJustAdded = addedItemAnimation === product.id;
@@ -178,75 +178,59 @@ export default function ProductCatalog({
                 <div
                   key={product.id}
                   onClick={() => onViewProductDetail(product)}
-                  className="group bg-white rounded-2xl border border-gray-100/90 hover:border-gray-300 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer"
+                  className="group cursor-pointer flex flex-col"
                 >
-                  {/* Product Photo Box - Clean, Neutral Background */}
-                  <div className="relative w-full aspect-square bg-[#f8f9fa] overflow-hidden flex items-center justify-center p-4">
+                  {/* Image — hover reveals add button at bottom */}
+                  <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl flex items-center justify-center">
                     <img 
                       src={productImage} 
                       alt={product.name} 
                       loading="lazy"
-                      className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
-                  </div>
 
-                  {/* Product Info - Simple & Clear */}
-                  <div className="p-4 flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Packaging / Volume Tag */}
-                      <span className="text-[11px] font-medium text-gray-400 block mb-1">
-                        {product.packaging || product.volumeSize}
-                      </span>
-
-                      {/* Product Name */}
-                      <h3 
-                        className="text-sm font-medium text-gray-900 group-hover:text-[#0038e3] transition-colors line-clamp-2 leading-snug"
-                        title={product.name}
-                      >
-                        {product.name}
-                      </h3>
-
-                      {/* Short Description */}
-                      <p className="text-xs text-gray-500 mt-1.5 line-clamp-2 leading-relaxed font-light">
-                        {product.shortDesc}
-                      </p>
-                    </div>
-
-                    {/* Action Button - Simple & Clean */}
-                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                      <span className="text-xs font-semibold text-gray-800">
-                        {product.volumeSize}
-                      </span>
-
+                    <div className="absolute inset-x-0 bottom-0 p-2.5 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
                       <button
                         onClick={(e) => handleAddClick(product, e)}
-                        className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                        className={`w-full py-2.5 rounded-full text-sm font-semibold text-white flex items-center justify-center gap-1.5 shadow-md transition-colors ${
                           isJustAdded
-                            ? 'bg-emerald-600 text-white'
+                            ? 'bg-emerald-600'
                             : inQuote
-                            ? 'bg-blue-50 text-[#0038e3] border border-blue-200'
-                            : 'bg-gray-900 hover:bg-[#0038e3] text-white'
+                            ? 'bg-[#0038e3]'
+                            : 'bg-[#0038e3] hover:bg-[#002bb8]'
                         }`}
                       >
                         {isJustAdded ? (
                           <>
-                            <Check className="w-3.5 h-3.5" />
+                            <Check className="w-4 h-4" />
                             <span>Eklendi</span>
                           </>
                         ) : inQuote ? (
                           <>
-                            <Check className="w-3.5 h-3.5" />
+                            <Check className="w-4 h-4" />
                             <span>Listede</span>
                           </>
                         ) : (
                           <>
-                            <Plus className="w-3.5 h-3.5" />
+                            <Plus className="w-4 h-4" />
                             <span>Teklife Ekle</span>
                           </>
                         )}
                       </button>
                     </div>
+                  </div>
 
+                  {/* Info — name + desc only */}
+                  <div className="pt-3.5 px-0.5">
+                    <h3 
+                      className="text-[15px] font-bold text-[#0c1a3a] leading-snug line-clamp-2"
+                      title={product.name}
+                    >
+                      {product.name}
+                    </h3>
+                    <p className="text-[13px] text-[#5a6a85] mt-1 line-clamp-2 leading-relaxed">
+                      {product.shortDesc}
+                    </p>
                   </div>
                 </div>
               );
