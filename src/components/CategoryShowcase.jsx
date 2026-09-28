@@ -11,7 +11,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'kimyasal',
       badge: 'KİMYASAL',
       desc: '20-30 LT, 5 LT ve 500-1000 ML temizlik kimyasalları',
-      image: '/images/industrial_canister.jpg'
+      image: '/images/products/canister_30lt_blue.jpg'
     },
     {
       id: 'kagit',
@@ -19,7 +19,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'kagit',
       badge: 'KAĞIT & MUTFAK',
       desc: 'Z katlama havlu, dispenser peçete, eldiven ve mutfak sarfı',
-      image: '/images/laundry_pouch.jpg'
+      image: '/images/products/paper_z_towel.jpg'
     },
     {
       id: 'ambalaj',
@@ -27,7 +27,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'ambalaj',
       badge: 'AMBALAJ',
       desc: 'Karton ve köpük bardaklar, poşet, bant ve servis ürünleri',
-      image: '/images/dish_canister.jpg'
+      image: '/images/products/paper_coffee_cups.jpg'
     },
     {
       id: 'cop-torbasi',
@@ -35,7 +35,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'cop-torbasi',
       badge: 'ÇÖP TORBASI',
       desc: 'Mini, orta, battal ve ağır hizmet çöp torbaları',
-      image: '/images/starter_kit.jpg'
+      image: '/images/products/trash_bags_black.jpg'
     },
     {
       id: 'gerec',
@@ -43,7 +43,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'gerec',
       badge: 'GEREÇ',
       desc: 'Mop, palet aparat, temizlik arabası, bez ve fırçalar',
-      image: '/images/soap_dispenser.jpg'
+      image: '/images/products/cleaning_cart_trolley.jpg'
     }
   ];
 

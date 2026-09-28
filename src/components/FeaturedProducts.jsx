@@ -14,7 +14,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
       badgeColor: 'bg-[#0038e3] text-white',
       volumeSize: '30 LT',
       packaging: 'Toptan tedarik',
-      image: '/images/industrial_canister.jpg',
+      image: '/images/products/canister_30lt_white.jpg',
       shortDesc: 'İşletmeler ve yoğun kullanım alanları için endüstriyel yüzey temizleyici.'
     },
     {
@@ -26,7 +26,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
       badgeColor: 'bg-emerald-600 text-white',
       volumeSize: '12X200 YAPRAK',
       packaging: 'Toptan tedarik',
-      image: '/images/laundry_pouch.jpg',
+      image: '/images/products/paper_z_towel.jpg',
       shortDesc: 'Ofis ve işletmeler için Z katlama dispenser kağıt havlu.'
     },
     {
@@ -38,7 +38,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
       badgeColor: 'bg-amber-600 text-white',
       volumeSize: '4 OZ',
       packaging: '3000 Adet / Koli',
-      image: '/images/dish_canister.jpg',
+      image: '/images/products/paper_coffee_cups.jpg',
       shortDesc: 'Espresso ve numune servisi için karton bardak.'
     },
     {
@@ -50,7 +50,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
       badgeColor: 'bg-indigo-600 text-white',
       volumeSize: 'Çift Kovalı',
       packaging: 'Toptan tedarik',
-      image: '/images/soap_dispenser.jpg',
+      image: '/images/products/cleaning_cart_trolley.jpg',
       shortDesc: 'Profesyonel kullanım için çift kovalı plastik temizlik arabası.'
     }
   ];

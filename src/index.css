@@ -5,7 +5,12 @@
 @tailwind utilities;
 
 /* Başlıklar: Poppins */
-h1, h2, h3, h4, h5, h6, 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .font-heading,
 .font-poppins {
   font-family: 'Poppins', system-ui, -apple-system, sans-serif !important;
@@ -14,14 +19,14 @@ h1, h2, h3, h4, h5, h6,
 
 /* Yazılar ve Gövde Metinleri: Plus Jakarta Sans */
 html,
-body, 
-p, 
-span, 
-a, 
-button, 
-input, 
-textarea, 
-select, 
+body,
+p,
+span,
+a,
+button,
+input,
+textarea,
+select,
 li,
 label,
 .font-sans,
@@ -30,7 +35,13 @@ label,
 }
 
 /* Başlık içi elementlerin başlık fontunu koruması için */
-h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .font-heading * {
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 *,
+.font-heading * {
   font-family: 'Poppins', system-ui, -apple-system, sans-serif !important;
 }
 
@@ -39,6 +50,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .font-heading * {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
+
   body {
     @apply bg-surface text-textDark antialiased;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -73,8 +85,10 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .font-heading * {
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important;
+  /* IE and Edge */
+  scrollbar-width: none !important;
+  /* Firefox */
 }
 
 .glass-panel {
@@ -84,7 +98,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .font-heading * {
 }
 
 .gradient-mesh {
-  background-image: 
+  background-image:
     radial-gradient(at 10% 20%, rgba(0, 90, 180, 0.08) 0px, transparent 50%),
     radial-gradient(at 90% 80%, rgba(10, 115, 224, 0.07) 0px, transparent 50%),
     radial-gradient(at 50% 50%, rgba(197, 91, 0, 0.04) 0px, transparent 50%);

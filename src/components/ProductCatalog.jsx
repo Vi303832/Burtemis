@@ -13,43 +13,31 @@ const getProductImage = (product) => {
   
   if (product.category === 'kimyasal') {
     if (product.volumeSize?.includes('30 LT') || product.volumeSize?.includes('20 LT')) {
-      return '/images/industrial_canister.jpg';
+      return '/images/products/canister_30lt_blue.jpg';
+    }
+    if (product.volumeSize?.includes('5 LT')) {
+      return '/images/products/bottle_5lt_detergent.jpg';
     }
     if (product.subCategory?.includes('Kullanıma Hazır') || product.volumeSize?.includes('ML')) {
-      return '/images/starter_kit.jpg';
+      return '/images/products/spray_glass_cleaner.jpg';
     }
-    if (product.subCategory?.includes('Çamaşır') || product.name?.includes('Çamaşır')) {
-      return '/images/laundry_pouch.jpg';
-    }
-    if (product.subCategory?.includes('Bulaşık') || product.name?.includes('Bulaşık')) {
-      return '/images/dish_canister.jpg';
-    }
-    if (product.name?.includes('Sabun')) {
-      return '/images/soap_dispenser.jpg';
-    }
-    return '/images/industrial_canister.jpg';
+    return '/images/products/canister_30lt_blue.jpg';
   }
   
-  if (product.category === 'sabun') {
-    return '/images/soap_dispenser.jpg';
-  }
-  if (product.category === 'bulasik') {
-    return '/images/dish_canister.jpg';
-  }
   if (product.category === 'kagit') {
-    return 'https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=600&auto=format&fit=crop&q=80';
+    return '/images/products/paper_z_towel.jpg';
   }
   if (product.category === 'ambalaj') {
-    return 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600&auto=format&fit=crop&q=80';
+    return '/images/products/paper_coffee_cups.jpg';
   }
   if (product.category === 'cop-torbasi') {
-    return 'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=600&auto=format&fit=crop&q=80';
+    return '/images/products/trash_bags_black.jpg';
   }
   if (product.category === 'gerec') {
-    return 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80';
+    return '/images/products/cleaning_mop_flat.jpg';
   }
   
-  return '/images/starter_kit.jpg';
+  return '/images/products/canister_30lt_blue.jpg';
 };
 
 export default function ProductCatalog({
