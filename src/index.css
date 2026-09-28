@@ -89,6 +89,7 @@ h6 *,
   /* IE and Edge */
   scrollbar-width: none !important;
   /* Firefox */
+  -webkit-overflow-scrolling: touch;
 }
 
 .glass-panel {

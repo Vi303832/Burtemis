@@ -80,13 +80,13 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
         <div className="relative">
           <div
             ref={scrollRef}
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            className="flex lg:grid lg:grid-cols-4 gap-6 sm:gap-8 xl:gap-10 overflow-x-auto lg:overflow-visible pb-6 no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth snap-x snap-mandatory touch-pan-x overscroll-x-contain"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+            className="flex lg:grid lg:grid-cols-4 gap-6 sm:gap-8 xl:gap-10 overflow-x-auto lg:overflow-visible pb-6 no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth"
           >
             {featuredList.map((item) => (
               <div
                 key={item.id}
-                className="flex-shrink-0 w-[320px] sm:w-[380px] md:w-[420px] lg:w-auto snap-start bg-white rounded-lg border border-gray-100 hover:border-gray-300 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group/card cursor-pointer"
+                className="flex-shrink-0 w-[320px] sm:w-[380px] md:w-[420px] lg:w-auto bg-white rounded-lg border border-gray-100 hover:border-gray-300 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group/card cursor-pointer"
                 onClick={() => onViewDetail && onViewDetail(item)}
               >
                 {/* Product Image Frame - Kare Stüdyo Fotoğrafı & Hover Eylemi */}

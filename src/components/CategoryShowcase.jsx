@@ -65,14 +65,14 @@ export default function CategoryShowcase({ onSelectCategory }) {
         <div className="relative">
           <div 
             ref={scrollRef}
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            className="flex gap-6 sm:gap-7 lg:gap-8 overflow-x-auto pb-4 no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth snap-x snap-mandatory touch-pan-x overscroll-x-contain"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+            className="flex gap-6 sm:gap-7 lg:gap-8 overflow-x-auto pb-4 no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth"
           >
             {categories.map((cat) => (
               <div
                 key={cat.id}
                 onClick={() => onSelectCategory(cat.categoryKey)}
-                className="category-card flex-shrink-0 w-[270px] sm:w-[310px] lg:w-[270px] xl:w-[290px] snap-start cursor-pointer group flex flex-col text-left select-none"
+                className="category-card flex-shrink-0 w-[270px] sm:w-[310px] lg:w-[270px] xl:w-[290px] cursor-pointer group flex flex-col text-left select-none"
               >
                 {/* Product Image Box - Büyütülmüş kare stüdyo fotoğrafı */}
                 <div className="relative w-full aspect-square bg-[#f4f5f7] overflow-hidden rounded-[3px] flex items-center justify-center">

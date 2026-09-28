@@ -7,7 +7,7 @@ export default function EditorialFeature({ onLearnMore }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Banner Frame with Image */}
-        <div className="relative rounded-3xl overflow-hidden min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] shadow-sm flex items-center justify-end">
+        <div className="relative rounded-3xl overflow-hidden min-h-[520px] sm:min-h-[520px] lg:min-h-[580px] shadow-sm flex items-end sm:items-center justify-end">
           
           {/* Background Photography */}
           <div className="absolute inset-0">
@@ -17,11 +17,11 @@ export default function EditorialFeature({ onLearnMore }) {
               className="w-full h-full object-cover object-center"
             />
             {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-black/30 lg:to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-black/10 sm:to-black/30 lg:to-transparent"></div>
           </div>
 
           {/* Overlapping Floating White Card on Right */}
-          <div className="relative z-10 m-4 sm:m-8 lg:mr-16 max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-2xl border border-gray-100/80 text-left animate-fadeIn">
+          <div className="relative z-10 m-4 mb-6 sm:m-8 lg:mr-16 max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-2xl border border-gray-100/80 text-left animate-fadeIn">
             <h2 className="text-2xl sm:text-3xl font-serif sm:font-sans font-normal text-gray-900 tracking-tight leading-tight">
               Tertemiz Bir Dünya İçin Kalite ve Hijyen
             </h2>
