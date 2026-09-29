@@ -141,8 +141,8 @@ export default function Footer({ onNavigate, onSelectCategory }) {
                 </a>
               </li>
               <li>
-                <a href="mailto:teklif@burtemis.com.tr" className="hover:text-white transition-colors">
-                  teklif@burtemis.com.tr
+                <a href="mailto:fdogturk14@gmail.com" className="hover:text-white transition-colors">
+                  fdogturk14@gmail.com
                 </a>
               </li>
               <li className="text-white/80 leading-relaxed pt-1">

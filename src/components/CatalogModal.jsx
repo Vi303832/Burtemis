@@ -36,7 +36,7 @@ export default function CatalogModal({ isOpen, onClose }) {
       `3. Bardak & Ambalaj Ürünleri\n` +
       `4. Çöp Torbaları & Atık\n` +
       `5. Temizlik Gereçleri\n\n` +
-      `Kurumsal İletişim: teklif@burtemis.com.tr | Tel / WhatsApp: 0539 405 92 86`
+      `Kurumsal İletişim: fdogturk14@gmail.com | Tel / WhatsApp: 0539 405 92 86`
     ], { type: 'text/plain;charset=utf-8' });
     element.href = URL.createObjectURL(file);
     element.download = "Burtemis_2026_Urun_Katalogu.txt";

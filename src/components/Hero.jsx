@@ -27,8 +27,8 @@ export default function Hero({ onExploreProducts, onOpenQuoteAction }) {
           Kalite ve Hijyen Kapınızda
         </h1>
 
-        <p className="text-sm sm:text-base lg:text-lg text-white/90 max-w-xl mx-auto font-light leading-relaxed">
-          Evinizden işyerinize temizlik malzemeleri ve hijyenik kağıt ürünleri tek adreste.
+        <p className="text-sm sm:text-base lg:text-lg text-white/90 max-w-2xl mx-auto font-light leading-relaxed">
+          Bursa ve Türkiye geneli toptan temizlik kimyasalları, endüstriyel kağıt havlu, karton bardak ambalaj ve kurumsal hijyen çözümleri tek adreste.
         </p>
 
         <div className="pt-3">

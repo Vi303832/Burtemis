@@ -215,10 +215,10 @@ export default function ContactSection() {
                 <div>
                   <span className="text-gray-400 block">E-Posta</span>
                   <a
-                    href="mailto:teklif@burtemis.com.tr"
+                    href="mailto:fdogturk14@gmail.com"
                     className="font-semibold text-gray-900 hover:text-[#0038e3]"
                   >
-                    teklif@burtemis.com.tr
+                    fdogturk14@gmail.com
                   </a>
                 </div>
               </div>

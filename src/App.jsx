@@ -12,6 +12,7 @@ import StartJourneyCTA from './components/StartJourneyCTA';
 import CatalogPage from './components/CatalogPage';
 import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
+import BlogPage from './components/BlogPage';
 import BlogSection from './components/BlogSection';
 import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
@@ -20,7 +21,7 @@ import CatalogModal from './components/CatalogModal';
 import { MessageCircle, Check, ShoppingBag } from 'lucide-react';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'catalog' | 'about' | 'contact'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'catalog' | 'about' | 'contact' | 'blog'
   const [currentSection, setCurrentSection] = useState('hero');
   const [aboutScrollTarget, setAboutScrollTarget] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -110,6 +111,13 @@ export default function App() {
       setCurrentPage('contact');
       setAboutScrollTarget(null);
       setCurrentSection('iletisim');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (sectionId === 'blog') {
+      setCurrentPage('blog');
+      setAboutScrollTarget(null);
+      setCurrentSection('blog');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -254,6 +262,23 @@ export default function App() {
     );
   }
 
+  // ── Blog / Sektörel Rehber Page ───────────────────────────────────────
+  if (currentPage === 'blog') {
+    return (
+      <>
+        <BlogPage
+          quoteItemsCount={totalQuoteCount}
+          onOpenQuoteDrawer={() => setIsQuoteDrawerOpen(true)}
+          onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
+          onNavigate={handleNavigate}
+          onSelectCategory={handleSelectCategory}
+          onGoHome={goHome}
+        />
+        {sharedOverlays}
+      </>
+    );
+  }
+
   // ── Home Page ─────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#0d1829] font-sans antialiased selection:bg-[#bad5ff] selection:text-[#0025a6]">
@@ -306,7 +331,7 @@ export default function App() {
         <StartJourneyCTA onGetStarted={() => handleNavigate('urunler')} />
 
         {/* 11. Blog */}
-        <BlogSection />
+        <BlogSection onNavigate={handleNavigate} />
       </main>
 
       <Footer
@@ -318,3 +343,4 @@ export default function App() {
     </div>
   );
 }
+

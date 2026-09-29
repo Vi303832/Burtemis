@@ -18,6 +18,7 @@ export default function Header({
   const subLinksLeft = [
     { label: 'Ürün Kataloğu', target: 'urunler' },
     { label: 'Hakkımızda', target: 'kurumsal' },
+    { label: 'Blog & Rehber', target: 'blog' },
     { label: 'Yorumlar', target: 'yorumlar' }
   ];
 
