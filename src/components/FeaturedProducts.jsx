@@ -38,7 +38,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
       badgeColor: 'bg-amber-600 text-white',
       volumeSize: '4 OZ',
       packaging: '3000 Adet / Koli',
-      image: '/images/products/paper_coffee_cups.jpg',
+      image: '/images/products/paper_cup_4oz.jpg',
       shortDesc: 'Espresso ve numune servisi için karton bardak.'
     },
     {
@@ -50,7 +50,7 @@ export default function FeaturedProducts({ onAddToQuote, onViewDetail, onShopAll
       badgeColor: 'bg-indigo-600 text-white',
       volumeSize: 'Çift Kovalı',
       packaging: 'Toptan tedarik',
-      image: '/images/products/cleaning_cart_trolley.jpg',
+      image: '/images/products/cleaning_cart_double_bucket.jpg',
       shortDesc: 'Profesyonel kullanım için çift kovalı plastik temizlik arabası.'
     }
   ];

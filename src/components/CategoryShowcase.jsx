@@ -27,7 +27,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'ambalaj',
       badge: 'AMBALAJ',
       desc: 'Karton ve köpük bardaklar, poşet, bant ve servis ürünleri',
-      image: '/images/products/paper_coffee_cups.jpg'
+      image: '/images/products/paper_cup_4oz.jpg'
     },
     {
       id: 'cop-torbasi',
@@ -35,7 +35,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'cop-torbasi',
       badge: 'ÇÖP TORBASI',
       desc: 'Mini, orta, battal ve ağır hizmet çöp torbaları',
-      image: '/images/products/trash_bags_black.jpg'
+      image: '/images/products/trash_bags_industrial_80x110.jpg'
     },
     {
       id: 'gerec',
@@ -43,7 +43,7 @@ export default function CategoryShowcase({ onSelectCategory }) {
       categoryKey: 'gerec',
       badge: 'GEREÇ',
       desc: 'Mop, palet aparat, temizlik arabası, bez ve fırçalar',
-      image: '/images/products/cleaning_cart_trolley.jpg'
+      image: '/images/products/cleaning_cart_double_bucket.jpg'
     }
   ];
 

@@ -39,12 +39,13 @@ export default function QuoteDrawer({
     if (formData.companyName) {
       message += `*Firma:* ${formData.companyName}\n`;
       message += `*Yetkili:* ${formData.fullName}\n`;
-      message += `*Telefon:* ${formData.phone}\n\n`;
+      message += `*Telefon:* ${formData.phone}\n`;
+      if (formData.email) message += `*E-Posta:* ${formData.email}\n`;
     }
-    message += `*Talep Edilen Ürün Listesi:*\n`;
+    message += `\n*Talep Edilen Ürün Listesi:*\n`;
 
     items.forEach((item, index) => {
-      message += `${index + 1}. *${item.name}* (${item.volumeSize}) — ${item.quantity || 1} Adet/Koli\n`;
+      message += `${index + 1}. *${item.name}* (${item.volumeSize || ''}) — ${item.quantity || 1} Adet/Koli\n`;
     });
 
     if (formData.notes) {
@@ -52,7 +53,7 @@ export default function QuoteDrawer({
     }
     message += `\nLütfen kurumsal toptan fiyat teklifinizi iletir misiniz?`;
 
-    window.open(`https://wa.me/905321112233?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/905394059286?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handleFormSubmit = (e) => {
@@ -61,6 +62,7 @@ export default function QuoteDrawer({
       alert('Lütfen zorunlu alanları (Firma, Ad Soyad, Telefon) eksiksiz doldurunuz.');
       return;
     }
+    handleSendViaWhatsApp();
     setActiveStep('success');
   };
 
@@ -225,7 +227,7 @@ export default function QuoteDrawer({
                   <input
                     type="tel"
                     required
-                    placeholder="05XX XXX XX XX"
+                    placeholder="0539 405 92 86"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className={inputClass}
@@ -268,10 +270,10 @@ export default function QuoteDrawer({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white text-xs font-semibold transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white text-xs font-semibold transition-colors shadow-sm"
                 >
-                  <Send className="w-3.5 h-3.5" />
-                  Teklif Talep Et
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  WhatsApp ile Teklif İste
                 </button>
               </div>
             </form>

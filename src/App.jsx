@@ -186,7 +186,7 @@ export default function App() {
           )}
         </button>
         <a
-          href="https://wa.me/905321112233?text=Merhaba%20Burtemis,%20ürünleriniz%20ve%20kurumsal%20fiyatlar%20hakkında%20bilgi%20almak%20istiyorum."
+          href="https://wa.me/905394059286?text=Merhaba%20Burtemis,%20ürünleriniz%20ve%20kurumsal%20fiyatlar%20hakkında%20bilgi%20almak%20istiyorum."
           target="_blank"
           rel="noopener noreferrer"
           className="w-13 h-13 p-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-xl shadow-emerald-600/30 flex items-center justify-center transition-all hover:scale-105 active:scale-95 group"

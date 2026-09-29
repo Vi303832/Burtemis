@@ -26,9 +26,9 @@ const getProductImage = (product) => {
   }
   
   if (product.category === 'kagit') return '/images/products/paper_z_towel.jpg';
-  if (product.category === 'ambalaj') return '/images/products/paper_coffee_cups.jpg';
-  if (product.category === 'cop-torbasi') return '/images/products/trash_bags_black.jpg';
-  if (product.category === 'gerec') return '/images/products/cleaning_mop_flat.jpg';
+  if (product.category === 'ambalaj') return '/images/products/paper_cup_4oz.jpg';
+  if (product.category === 'cop-torbasi') return '/images/products/trash_bags_industrial_80x110.jpg';
+  if (product.category === 'gerec') return '/images/products/cleaning_cart_double_bucket.jpg';
   
   return '/images/products/canister_30lt_blue.jpg';
 };
@@ -53,9 +53,9 @@ export default function ProductModal({
 
   const getWhatsAppLink = () => {
     const text = encodeURIComponent(
-      `Merhaba Burtemis Satış Ekibi, ${product.name} (${quantity} Koli/Birim) hakkında kurumsal toptan fiyat teklifi rica ediyorum.`
+      `Merhaba Burtemis Satış Ekibi, ${product.name} (${quantity} Adet/Koli) hakkında kurumsal toptan fiyat teklifi rica ediyorum.`
     );
-    return `https://wa.me/905321112233?text=${text}`;
+    return `https://wa.me/905394059286?text=${text}`;
   };
 
   const productImage = getProductImage(product);

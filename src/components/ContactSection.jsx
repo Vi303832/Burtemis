@@ -11,12 +11,29 @@ export default function ContactSection() {
     notes: '',
   });
 
+  const generateWhatsAppMessage = () => {
+    let message = `*BURTEMİS KURUMSAL TEKLİF TALEBİ*\n\n`;
+    message += `*Firma / Kurum:* ${formData.companyName}\n`;
+    message += `*Yetkili Kişi:* ${formData.fullName}\n`;
+    message += `*Telefon:* ${formData.phone}\n`;
+    if (formData.email) message += `*E-Posta:* ${formData.email}\n`;
+    if (formData.notes) message += `*Not / İhtiyaç:* ${formData.notes}\n`;
+    message += `\nLütfen kurumsal toptan fiyat teklifinizi iletir misiniz?`;
+    return message;
+  };
+
+  const openWhatsApp = () => {
+    const message = generateWhatsAppMessage();
+    window.open(`https://wa.me/905394059286?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.companyName || !formData.phone || !formData.fullName) {
       alert('Lütfen Firma Adı, Yetkili Kişi ve Telefon alanlarını doldurunuz.');
       return;
     }
+    openWhatsApp();
     setFormSubmitted(true);
   };
 
@@ -28,13 +45,13 @@ export default function ContactSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-10">
           <span className="text-[11px] font-bold tracking-[0.2em] text-[#0038e3] uppercase block mb-3">
-            İLETİŞİM
+            İLETİŞİM & WHATSAPP TEKLİF
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             Kurumsal Fiyat Teklifi
           </h2>
           <p className="text-sm text-gray-500 mt-2">
-            Sorularınız veya toptan ihtiyaç listeniz için formu doldurun; satış ekibimiz kısa sürede dönüş yapsın.
+            Formu doldurun veya WhatsApp hattımızdan listenizi iletin; ekibimiz anında fiyatlandırsın.
           </p>
         </div>
 
@@ -48,26 +65,34 @@ export default function ContactSection() {
                 <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-900">Talebiniz alındı</h4>
+                <h4 className="text-lg font-semibold text-gray-900">Teklif Talebiniz WhatsApp&apos;a Aktarıldı</h4>
                 <p className="text-xs text-gray-500 max-w-sm mx-auto leading-relaxed">
-                  {formData.fullName}, {formData.companyName} için teklifiniz en kısa sürede
-                  iletilecektir.
+                  {formData.fullName}, {formData.companyName} için teklif talebiniz oluşturuldu.
                 </p>
-                <button
-                  onClick={() => {
-                    setFormSubmitted(false);
-                    setFormData({
-                      companyName: '',
-                      fullName: '',
-                      phone: '',
-                      email: '',
-                      notes: '',
-                    });
-                  }}
-                  className="mt-2 text-xs font-semibold text-[#0038e3] hover:underline"
-                >
-                  Yeni Form
-                </button>
+                <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-2">
+                  <button
+                    onClick={openWhatsApp}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp Sohbetini Aç
+                  </button>
+                  <button
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setFormData({
+                        companyName: '',
+                        fullName: '',
+                        phone: '',
+                        email: '',
+                        notes: '',
+                      });
+                    }}
+                    className="w-full sm:w-auto py-2.5 px-4 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    Yeni Form
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,7 +131,7 @@ export default function ContactSection() {
                     <input
                       type="tel"
                       required
-                      placeholder="05XX XXX XX XX"
+                      placeholder="0539 405 92 86"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className={inputClass}
@@ -127,11 +152,11 @@ export default function ContactSection() {
 
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">
-                    Not (isteğe bağlı)
+                    Not / İstenilen Ürünler
                   </label>
                   <textarea
                     rows="3"
-                    placeholder="Ürün listesi veya özel istekleriniz..."
+                    placeholder="Talep ettiğiniz ürün listesi veya özel istekleriniz..."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className={`${inputClass} resize-none`}
@@ -140,9 +165,10 @@ export default function ContactSection() {
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white font-medium text-xs transition-colors"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#0038e3] hover:bg-[#002bb8] text-white font-semibold text-xs transition-colors shadow-md shadow-blue-600/20"
                 >
-                  Teklif Talebini Gönder
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  <span>WhatsApp ile Teklif Talebini Gönder</span>
                 </button>
               </form>
             )}
@@ -151,35 +177,35 @@ export default function ContactSection() {
           {/* Contact side */}
           <div className="lg:col-span-5 space-y-4 text-left">
             <div className="bg-white rounded-2xl p-6 border border-gray-200/80">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">WhatsApp</h4>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Doğrudan WhatsApp Hattı</h4>
               <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-                Listenizi fotoğraf veya dosya olarak doğrudan iletebilirsiniz.
+                İhtiyaç listenizi fotoğraf, Excel veya mesaj olarak doğrudan iletebilirsiniz.
               </p>
               <a
-                href="https://wa.me/905321112233?text=Merhaba,%20kurumsal%20ürün%20fiyat%20teklifi%20almak%20istiyoruz."
+                href="https://wa.me/905394059286?text=Merhaba,%20kurumsal%20ürün%20fiyat%20teklifi%20almak%20istiyoruz."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold transition-colors shadow-sm"
               >
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp ile Yaz
+                WhatsApp ile Hemen Yazın
               </a>
             </div>
 
             <div className="bg-white rounded-2xl p-6 border border-gray-200/80 space-y-3.5 text-xs">
               <h4 className="text-sm font-semibold text-gray-900 pb-2 border-b border-gray-100">
-                İletişim
+                İletişim Bilgileri
               </h4>
 
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <span className="text-gray-400 block">Telefon</span>
+                  <span className="text-gray-400 block">Telefon / WhatsApp</span>
                   <a
-                    href="tel:+908503000000"
+                    href="tel:+905394059286"
                     className="font-semibold text-gray-900 hover:text-[#0038e3]"
                   >
-                    0850 300 00 00
+                    0539 405 92 86
                   </a>
                 </div>
               </div>
@@ -198,17 +224,17 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                <Clock className="w-4 h-4 text-[#0038e3] mt-0.5 flex-shrink-0" />
                 <div>
-                  <span className="text-gray-400 block">Saatler</span>
-                  <span className="font-medium text-gray-700">Hafta içi 08:30 – 18:30</span>
+                  <span className="text-gray-400 block">Çalışma Saatleri</span>
+                  <span className="font-semibold text-gray-900">7 Gün 10:00 – 21:00</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <span className="text-gray-400 block">Depolar</span>
+                  <span className="text-gray-400 block">Depolar & Sevkiyat</span>
                   <span className="font-medium text-gray-700">İstanbul & Bursa</span>
                 </div>
               </div>

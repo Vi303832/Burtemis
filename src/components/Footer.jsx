@@ -14,7 +14,7 @@ const SocialIcon = ({ type }) => {
   if (type === 'linkedin') {
     return (
       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
       </svg>
     );
   }
@@ -117,22 +117,27 @@ export default function Footer({ onNavigate, onSelectCategory }) {
           {/* İletişim */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-widest text-white/90">
-              İletişim
+              İletişim &amp; Teklif
             </h4>
             <ul className="space-y-2 text-xs text-white/70 font-light">
               <li>
                 <button onClick={() => onNavigate('iletisim')} className="hover:text-white transition-colors">
-                  Bize Ulaşın
+                  Bize Ulaşın / Teklif İste
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('iletisim')} className="hover:text-white transition-colors">
-                  Kurumsal Fiyat Teklifi
-                </button>
+                <a href="tel:+905394059286" className="hover:text-white transition-colors font-medium">
+                  Telefon: 0539 405 92 86
+                </a>
               </li>
               <li>
-                <a href="tel:+908503000000" className="hover:text-white transition-colors">
-                  0850 300 00 00
+                <a
+                  href="https://wa.me/905394059286?text=Merhaba%20Burtemis,%20fiyat%20teklifi%20almak%20istiyorum."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors font-medium text-emerald-300"
+                >
+                  WhatsApp: 0539 405 92 86
                 </a>
               </li>
               <li>
@@ -140,7 +145,10 @@ export default function Footer({ onNavigate, onSelectCategory }) {
                   teklif@burtemis.com.tr
                 </a>
               </li>
-              <li className="text-white/60 leading-relaxed pt-1">
+              <li className="text-white/80 leading-relaxed pt-1">
+                <span className="font-semibold text-white">Çalışma Saatleri:</span> 7 Gün 10:00 – 21:00
+              </li>
+              <li className="text-white/60 leading-relaxed">
                 Organize Sanayi Bölgesi,<br />İstanbul &amp; Bursa Depoları
               </li>
             </ul>

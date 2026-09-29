@@ -52,11 +52,20 @@ export default function Header({
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-xs font-sans">
       
       {/* 1. Announcement Bar */}
-      <div className="bg-[#0038e3] text-white text-[12px] sm:text-[13px] font-semibold tracking-wide py-2 px-4 text-center">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
-          <span>Tertemiz Bir Dünya İçin Kalite ve Hijyen Kapınızda</span>
-          <span className="opacity-60 hidden sm:inline">•</span>
-          <span className="hidden sm:inline">Kurumsal Fiyat Teklifi Alın</span>
+      <div className="bg-[#0038e3] text-white text-[11px] sm:text-[12px] font-medium tracking-wide py-2 px-4 text-center">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          <span className="font-semibold">Tertemiz Bir Dünya İçin Kalite ve Hijyen Kapınızda</span>
+          <span className="opacity-40 hidden sm:inline">•</span>
+          <span className="bg-white/20 px-2 py-0.5 rounded-full text-[11px] font-bold">7 Gün 10:00 – 21:00</span>
+          <span className="opacity-40 hidden sm:inline">•</span>
+          <a
+            href="https://wa.me/905394059286?text=Merhaba,%20kurumsal%20fiyat%20teklifi%20almak%20istiyorum."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-bold underline hover:text-emerald-300 transition-colors"
+          >
+            WhatsApp Teklif: 0539 405 92 86
+          </a>
         </div>
       </div>
 

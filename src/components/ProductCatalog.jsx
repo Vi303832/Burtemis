@@ -28,13 +28,13 @@ const getProductImage = (product) => {
     return '/images/products/paper_z_towel.jpg';
   }
   if (product.category === 'ambalaj') {
-    return '/images/products/paper_coffee_cups.jpg';
+    return '/images/products/paper_cup_4oz.jpg';
   }
   if (product.category === 'cop-torbasi') {
-    return '/images/products/trash_bags_black.jpg';
+    return '/images/products/trash_bags_industrial_80x110.jpg';
   }
   if (product.category === 'gerec') {
-    return '/images/products/cleaning_mop_flat.jpg';
+    return '/images/products/cleaning_cart_double_bucket.jpg';
   }
   
   return '/images/products/canister_30lt_blue.jpg';
